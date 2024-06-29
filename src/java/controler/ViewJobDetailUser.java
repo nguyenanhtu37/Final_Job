@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Comment;
 import model.Job;
 import model.User;
 
@@ -63,9 +62,9 @@ public class ViewJobDetailUser extends HttpServlet {
         String JobID = request.getParameter("id");
         System.out.println(JobID);
         Job j = new Job();
-        Comment c = new Comment();
-        List<Comment> list = c.getListCommentByJobId(JobID);
-        List<Comment> list2 = c.getListCommentEByJobId(JobID);
+//        Comment c = new Comment();
+//        List<Comment> list = c.getListCommentByJobId(JobID);
+//        List<Comment> list2 = c.getListCommentEByJobId(JobID);
 
         Job completeJob = j.getJobbyId(JobID);
 //        System.out.println(list.size() + "comment");
@@ -77,8 +76,8 @@ public class ViewJobDetailUser extends HttpServlet {
         
         request.getSession().setAttribute("User", us);// chừ qua bên kia gõ User.getUSerID là dùng được
         request.getSession().setAttribute("JobDetail", completeJob);
-        request.setAttribute("list", list);
-        request.setAttribute("list2", list2);
+//        request.setAttribute("list", list);
+//        request.setAttribute("list2", list2);
         request.getRequestDispatcher("ViewJobDetailUser.jsp").forward(request, response);
     }
 

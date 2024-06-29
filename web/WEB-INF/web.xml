@@ -75,7 +75,7 @@
         <servlet-name>SearchUser</servlet-name>
         <servlet-class>controler.SearchUser</servlet-class>
     </servlet>
-<!--    <servlet>
+    <!--    <servlet>
         <servlet-name>CreateAccountServlet</servlet-name>
         <servlet-class>controler.CreateAccountServlet</servlet-class>
     </servlet>-->
@@ -211,7 +211,7 @@
         <servlet-name>SearchUser</servlet-name>
         <url-pattern>/SearchUser</url-pattern>
     </servlet-mapping>
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>CreateAccountServlet</servlet-name>
         <url-pattern>/CreateAccountServlet</url-pattern>
     </servlet-mapping>-->
@@ -255,7 +255,7 @@
         <servlet-name>ViewJobDetaiEnter</servlet-name>
         <url-pattern>/ViewJobDetaiEnter</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <servlet-name>ViewJobDetailIndex</servlet-name>
         <servlet-class>controler.ViewJobDetailIndex</servlet-class>
     </servlet>

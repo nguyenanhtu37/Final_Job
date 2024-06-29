@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 public interface DatabaseInfo {
     public static String driverName="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String dbURL="jdbc:sqlserver://localhost:1433;databaseName=JobC";
+    public static String dbURL="jdbc:sqlserver://localhost:1433;databaseName=JobC;encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8";
     public static String userDB="sa";
     public static String passDB="admin";
     public static Connection getConnect(){

@@ -10,10 +10,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-/**
- *
- * @author ASUS
- */
 public class User {
     private String UserID;
     private String UserAccount;

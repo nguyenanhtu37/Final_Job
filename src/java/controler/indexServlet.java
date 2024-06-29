@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Enterprise;
 import model.EnterpriseDB;
 import model.Job;
@@ -39,7 +40,7 @@ public class indexServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet indexServlet</title>");            
+            out.println("<title>Servlet indexServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet indexServlet at " + request.getContextPath() + "</h1>");
@@ -64,29 +65,21 @@ public class indexServlet extends HttpServlet {
         request.setAttribute("jobss", jobss);
         ArrayList<Enterprise> e = EnterpriseDB.getListEnter();
         System.out.println(e);
-                
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+        // Store the attributes in the session
+        HttpSession session = request.getSession();
+        session.setAttribute("jobss", jobss);
+        session.setAttribute("enterprises", e);
+
+        response.sendRedirect("index.jsp");
+    }
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

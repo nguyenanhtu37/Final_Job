@@ -657,7 +657,7 @@ h1, h2, h3, h4 {
     padding: 0.5rem .5rem;
     margin-bottom: .3rem;
     color: #343a40;
-    background: #fff;
+    sbackground: #fff;
     border: 1px solid #eee !important;
 }
 .home-section .search-jobs-form .dropdown-item.active {
@@ -2073,3 +2073,42 @@ h1, h2, h3, h4 {
   font-size: 50px;
   font-weight: bold;
 }
+
+.navbar {
+    background-color: white;;
+}
+
+body, html, .navbar {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100px; /* Đặt chiều cao của navbar bằng với chiều cao của ảnh */
+    background-color: white; /* Màu nền của navbar */
+    padding: 0 20px; /* Thêm padding nếu cần */
+}
+
+/* Đặt chiều cao và chiều rộng của ảnh */
+.navbar-logo {
+    height: 100px; /* Chiều cao của ảnh */
+    width: auto; /* Giữ tỷ lệ khung hình của ảnh */
+}
+
+/* Đặt khoảng cách giữa các phần tử */
+.right-cta-menu {
+    margin-left: auto; /* Đẩy nội dung sang phía bên phải */
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+/* Điều chỉnh các phần tử trong dropdown */
+.dropdown .btn {
+    margin-left: 10px;
+}
+
+

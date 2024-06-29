@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Comment;
 import model.Job;
 import model.User;
 
@@ -79,17 +78,17 @@ public class ViewJobDetaiEnter extends HttpServlet {
 //        request.getRequestDispatcher("ViewJobDetailUser.jsp").forward(request, response);
         
         String JobID =  request.getParameter("id");
-        Comment c = new Comment();
-        List<Comment> list = c.getListCommentEByJobId(JobID);
-        List<Comment> list2 = c.getListCommentByJobId(JobID);
+//        Comment c = new Comment();
+//        List<Comment> list = c.getListCommentEByJobId(JobID);
+//        List<Comment> list2 = c.getListCommentByJobId(JobID);
         System.out.println(JobID);
         Job j = new Job();
         System.out.println();
         Job completeJob = j.getJobbyId(JobID);
 //        System.out.println(completeJob.getSalary());
         
-        request.setAttribute("list", list);
-        request.setAttribute("list2", list2);
+//        request.setAttribute("list", list);
+//        request.setAttribute("list2", list2);
         request.getSession().setAttribute("JobDetail", completeJob);
 //        response.sendRedirect("ViewJobDetailEnter.jsp");
        request.getRequestDispatcher("ViewJobDetailEnter.jsp").forward(request, response);

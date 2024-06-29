@@ -1,28 +1,23 @@
-<%-- 
-    Document   : index
-    Created on : Oct 15, 2023, 11:29:32 PM
-    Author     : ASUS
---%>
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Job" %>
+<%@ page import="model.Enterprise" %>
+<%
+    ArrayList<Job> jobss = (ArrayList<Job>) session.getAttribute("jobss");
+    ArrayList<Enterprise> enterprises = (ArrayList<Enterprise>) session.getAttribute("enterprises");
+%>
 
 <!doctype html>
 <html lang="en">
     <head>
-        <title>JobC</title>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>JobLink</title>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="Free-Template.co" />
-        <link rel="shortcut icon" href="ftco-32x32.png">
+        <link rel="shortcut icon" href="images/logo.png">
 
         <link rel="stylesheet" href="css/custom-bs.css">
         <link rel="stylesheet" href="css/jquery.fancybox.min.css">
@@ -32,8 +27,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/animate.min.css">
 
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-L5c9iWnfDavfAxKEZT4peJ3r9q0tbykR0pFmsRT9rH0MwC5xRRXo8rZ2JdHg9gBm" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+xzApzDm0D9F8Pk/xCI3l92rL0qg5GMECE1" crossorigin="anonymous"></script>
+
+
         <!-- MAIN CSS -->
-        <link rel="stylesheet" href="css/style.css">    
+        <link rel="stylesheet" href="css/style.css">   
     </head>
     <body id="top">
 
@@ -58,217 +62,415 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
 
             <!-- NAVBAR -->
-            <header class="site-navbar mt-3">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="site-logo col-6"><a href="index.jsp">JobC</a></div>
-
-
-                        <nav class="mx-auto site-navigation">
-                            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                <a href="https://nguyenanhtu37.github.io/PluginMessenger/plugin.html" style="padding-right: 500px; color: white; font-weight: bold">Chat</a>
-
-                            </ul>
-                        </nav>
-
-                        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                            <div class="ml-auto">
-
-                                <div class="dropdown d-none d-lg-inline-block">
-                                    <nav>
-
-                                        <!--<ul>-->
-                                        <!--<a href="https://nguyenanhtu37.github.io/PluginMessenger/plugin.html" style="padding-right: 500px; color: white; font-weight: bold">Chat</a>-->
-                                        <!--</ul>-->
-                                        <!--</nav>-->
-                                        <a class="btn btn-primary border-width-2  dropdown-toggle" href="SignUpServlet">Sign Up</a>
-
-                                </div>
-                                <div class="dropdown d-none d-lg-inline-block">
-                                    <a class="btn btn-primary border-width-2  dropdown-toggle" href="LoginServlet">Login</a>
-
-                                </div>
-                            </div>
-                            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-                        </div>
-
-                    </div>
+            <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="left-content" style="display: flex; align-items: flex-end">
+                    <a href="#"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                    <a href="#" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Việc làm</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Hồ sơ & CV</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
                 </div>
-            </header>
+                <div class="right-cta-menu text-right d-flex align-items-center ml-auto" style="margin-left: auto;">
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown d-none d-lg-inline-block">
+                            <a class="btn custom-btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: white; color: #66BC46; border-color: #66BC46; transition: background-color 0.3s, color 0.3s;">
+                                Đăng nhập
+                            </a>
+                        </div>
+                        <div class="dropdown d-none d-lg-inline-block ml-2">
+                            <a class="btn custom-btn green-btn" href="SignUpServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #66BC46; border-color: #66BC46; color: white; transition: background-color 0.3s, color 0.3s;">
+                                Đăng ký
+                            </a>
+                        </div>
+                        <div class="dropdown d-none d-lg-inline-block ml-2">
+                            <a class="btn custom-btn dark-btn" href="DangKyTuVan.jsp" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                                Đăng tuyển & tìm hồ sơ
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3" style="margin-left: 1rem;">
+                        <span class="icon-menu h3 m-0 p-0 mt-2"></span>
+                    </a>
+                </div>
+            </nav>
+
+            <style>
+                .nav-link:hover {
+                    transform: scale(1.5); /* Zoom in 110% khi hover */
+                    color: #66BC46;
+                }
+
+                .btn.custom-btn:hover {
+                    background-color: #66BC46;
+                    color: white;
+                }
+
+                .btn.green-btn:hover {
+                    background-color: #4CAF50;
+                    border-color: #4CAF50;
+                }
+
+                .btn.dark-btn:hover {
+                    background-color: #1E272E;
+                    border-color: #1E272E;
+                }
+            </style>
 
             <!-- HOME -->
-            <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg'); "
+            <section class="home-section bg-image" style="background-image: url(''); "
                      id="home-section">
-
                 <div class="container scroll" style="overflow-y:scroll;">
+
+                    <div class="text-center" style="margin-top: 50px; margin-bottom: 10px"> 
+                        <img src="images/JobLink.png" width="400px" height="auto" alt="Logo"/>
+                    </div>
+                    <div style="height: 50px">
+                        <div class="typing-container" style="margin-top: 0px">
+                            <p style="color: #333; font-family: monospace; font-size: 30px;">
+                                "Vì một <span class="text-highlight">tương lai</span> không có người <span class="text-warning">thất nghiệp</span>!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <style>
+                        .typing-container {
+                            display: inline-block;
+                            /*display: flex;*/
+                            /*justify-content: center;*/
+                            white-space: nowrap;
+                            border-right: 1px solid; /* Đường viền con trỏ chuột */
+                            animation: caret 0.75s step-end infinite;
+                            font-family: monospace;
+                            font-size: 30px;
+                            color: #333;
+                            padding-left: 200px
+                        }
+
+                        @keyframes caret {
+                            50% {
+                                border-color: transparent;
+                            }
+                        }
+
+                        .text-highlight {
+                            color: #66BC46;
+                        }
+
+                        .text-warning {
+                            color: red;
+                        }
+
+                        /* Điều chỉnh kích thước con trỏ chuột */
+                        .typing-container p {
+                            border-right-width: 1px; /* Đường viền nhỏ hơn */
+                        }
+
+                    </style>
+
+                    <div id="carouselIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 50px; margin-bottom: 50px">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselIndicators" data-slide-to="3"></li>
+                            <li data-target="#carouselIndicators" data-slide-to="4"></li>
+                            <!--Add more <li> items for additional slides--> 
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/carousel1_LE_digital_art_x2.jpg" class="d-block w-100" alt="Slide 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/c2_LE_digital_art_x4.jpg" class="d-block w-100" alt="Slide 2" style="width: 700px">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/c3_LE_digital_art_x4.jpg" class="d-block w-100" alt="Slide 3">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/c4_LE_digital_art_x4.jpg" class="d-block w-100" alt="Slide 4">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/c5_LE_digital_art_x4.jpg" class="d-block w-100" alt="Slide 5">
+                            </div>
+                            <!--Add more <div class="carousel-item"> for additional slides--> 
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                    <style>
+                        /* Carousel styling */
+                        #carouselIndicators {
+                            border-radius: 15px; /* Rounded corners */
+                            overflow: hidden; /* Prevent carousel from overflowing */
+                            max-width: 2000px; /* Maximum width for the carousel */
+                            margin: 0px auto 0; /* Center the carousel and add top margin */
+                            background-color: #f0f0f0; /* Gray background color */
+                            box-shadow: 0 14px 16px rgba(0, 0, 0, 0.1); /* Shadow effect */
+                            max-height: 700px;
+                            margin-bottom: 30px;
+                        }
+
+                        .carousel-inner {
+                            border-radius: 15px; /* Rounded corners for carousel items */
+                        }
+
+                        .carousel-item img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover; /* Đảm bảo hình ảnh vừa với phần tử mà không bị kéo dãn */
+                        }
+
+                    </style>
+
+
+
+
+            </section>
+
+            <div style="background-color: #f0f0f0; width: 100%; padding: 20px 0;">
+                <div class="container">
+                    <h2 style="color: #66BC46; margin-top: 20px; text-align: left; margin-bottom: 30px">Top Công ty hàng đầu</h2>
                     <div class="row justify-content-center">
-                        <div class="h-25 col-md-12 align-items-end">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/ms.png" alt="Microsoft">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/amz.png" alt="Facebook">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/fpt-300x200.png" alt="FPT">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/vng.png" alt="VNG">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/viettel.jpg" alt="Viettel">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/vnpt.jpg" alt="VNPT">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/amazone.jpg" alt="Amazon">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/moa.png" alt="MoA">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/vinatech.png" alt="VinaTech">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/tiktok.jpg" alt="TikTok">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/vigo.jpg" alt="Vigo">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/nextlogix.jpg" alt="NextLogix">
+                        </div>  
+                    </div>
+                </div>
+            </div>
 
+
+            <style>
+                .lg {
+                    height: 200px;
+                    width: 270px;
+                    object-fit: contain; /* Ensure the image does not stretch */
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 15px;
+                    background-color: white;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                .lg:hover {
+                    transform: scale(1.05); /* Slightly enlarge the image */
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+                }
+
+                .col-lg-3, .col-md-4, .col-sm-6, .col-12 {
+                    padding: 15px;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    margin-bottom: 0px;
+                }
+            </style>
+
+            <div class="searchJob">
+                <div class="container">
+                    <h3 style="padding-top: 50px; font-size: 50px" class="just-align-center">Bạn muốn tìm kiếm việc làm?</h3>
+                    <div class="just-align-center" style="padding-bottom: 60px">
+                        <button class="flashing-button" onclick="scrollToSearchForm()">Tìm kiếm ngay</button>
+                    </div>
+                    <div class="row justify-content-left">
+                        <div>
+                            <img src="images/png-clipart-job-hunting-intern-employment-website-cover-letter-job-search-text-logo.png" width="width" height="height" alt="alt"/>
+                            <form id="searchForm" action="SearchIndex" method="POST" class="search-jobs-form">
+                                <div class="row mb-5">
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <input name="search-input" type="text" class="form-control form-control-lg" placeholder="Vị trí ứng tuyển:" style="background-color: #cccccc; border-style: inherit">
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <input name="location-input" type="text" class="form-control form-control-lg" placeholder="Địa chỉ:" style="background-color: #cccccc">
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <select name="type-input" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Chọn loại hình công việc:" style="border: 2px solid #cccccc; border-radius: 4px; padding: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                            <option value="parttime">Part Time</option>
+                                            <option value="fulltime">Full Time</option>
+                                            <option value="remote">Remote</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-md-12 align-items-end">
-                            <div class="mb-5 text-center">
-                                <h1 class="text-white font-weight-bold">Job Search Platform <strong>JobC - Job Connection</strong></h1>
-                                <p>The easiest way to connect Employer and Job Seeker!</p>
-                            </div>
-                        </div>
-                        <form action="SearchIndex" method="POST" class="search-jobs-form">
-                            <div class="row mb-5">
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <input name ="search-input" type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <input name ="location-input" type="text" class="form-control form-control-lg" placeholder="Location">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <select name="type-input" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true"
-                                            title="Select Job Type">
-                                        <option value="parttime">Part Time</option>
-                                        <option value="fulltime" >Full Time</option>
-                                        <option value="remote" >Remote</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span
-                                            class="icon-search icon mr-2"></span>Search Job</button>
-                                </div>
-                            </div>
-                        </form>
                         <c:forEach items="${jobss}" var="job">
-                            <div class="col-md-12 align-items-start">
-                                <div class="mb-5 border rounded" style="background-color: whitesmoke; color: black;">
-                                    <div class="p-3 border rounded">
-                                        <form action="PostJobServlet" class="px-3 px-md-5 py-1 py-md-3 rounded" method="post">
-                                            <a href="ViewJobDetailIndex?id=${job.jobId}" class=" possion text-black mb-5 pb-2 text-capitalize" style="font-size: 50px;font-weight: bold;">${job.title}</a>
-                                            <h3 class="text-black mb-2 border-bottom pb-2 text-capitalize">${job.enterName}</h3>
-
-                                            <div class="p-1">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="row form-group">
-                                                            <label for="name" class="col-4 col-form-label text-capitalize">location</label>
-                                                            <div class="col-sm-8">
-                                                                ${job.location}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row align-items-center mb-5">
-                                                    <div class="col-lg-2">
-                                                        <a href="LoginServlet" type="submit" class="btn btn-block btn-primary btn-md">Apply</a>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                        </form>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-capitalize" style="font-size: 24px; font-weight: bold;"><a href="ViewJobDetailIndex?id=${job.jobId}" class="text-dark">${job.title}</a></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted text-capitalize">${job.enterName}</h6>
+                                        <p class="card-text text-capitalize"><strong>Location:</strong> ${job.location}</p>
+                                        <a href="LoginServlet" class="btn btn-primary btn-block">Apply</a>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
-
                     </div>
                 </div>
+            </div>
 
+            <style>
+                .just-align-center {
+                    text-align: center;
+                }
 
-            </section>
-            <section id="#next" class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');" >
+                .flashing-button {
+                    font-size: 20px;
+                    border: 1px solid;
+                    border-radius: 5px;
+                    background-color: #66BC46;
+                    color: white;
+                    animation: flash 1.5s infinite;
+                }
+
+                @keyframes flash {
+                    0%, 50%, 100% {
+                        opacity: 1;
+                    }
+                    25%, 75% {
+                        opacity: 0.5;
+                    }
+                }
+
+                .card {
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 10px;
+                    background-color: white;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.2s;
+                }
+
+                .card:hover {
+                    transform: scale(1.05);
+                }
+
+                .card-title a {
+                    text-decoration: none;
+                }
+
+                .card-title a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+
+            <div style="background-color: #f0f0f0; width: 100%; padding: 20px 0;">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h2 class="text-white">Looking For A Job?</h2>
-                            <p class="mb-0 text-white lead">Please sign up an account to have a full experiences!`  </p>
+                    <h2 style="color: #66BC46; margin-top: 20px; text-align: left; margin-bottom: 30px">Top ngành nghề nổi bật</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/laptrinh.png" alt="ITphanmem">
+                            <h5>IT phần mềm</h5>
                         </div>
-                        <div class="col-md-3 ml-auto">
-                            <a href="SignUpServlet" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/kdbh.jpg" alt="Kinhdoanh/Banhang">
+                            <h5>Kinh doanh / Bán hàng</h5>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="site-section py-4">
-                <div class="container">
-
-                    <div class="row align-items-center">
-                        <div class="col-12 text-center mt-4 mb-5">
-                            <div class="row justify-content-center">
-                                <div class="col-md-7">
-                                    <h2 class="section-title mb-2">Company We've Cooperated</h2>
-                                    <!--<p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam fugit mollitia ipsum facilis expedita tempora suscipit iste</p>-->
-                                </div>
-                            </div>
-
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/hcvp.png" alt="Hanhchinh/Vanphong">
+                            <h5>Hành chính / Văn phòng</h5>
                         </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_mailchimp.svg" alt="Image" class="img-fluid logo-1">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/gddt.jpg" alt="Giaoduc/Daotao">
+                            <h5>Giáo dục / Đào tạo</h5>
                         </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_paypal.svg" alt="Image" class="img-fluid logo-2">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/Call-Service-Support-PNG-Clipart.png" alt="Viettel">
+                            <h5>Tư vấn</h5>
                         </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_stripe.svg" alt="Image" class="img-fluid logo-3">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/mkt.jpg" alt="VNPT">
+                            <h5>Makerting / Truyền thông</h5>
                         </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_visa.svg" alt="Image" class="img-fluid logo-4">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/vt.jpg" alt="Amazon">
+                            <h5>Vận tải / Kho vận</h5>
                         </div>
-
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_apple.svg" alt="Image" class="img-fluid logo-5">
-                        </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_tinder.svg" alt="Image" class="img-fluid logo-6">
-                        </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_sony.svg" alt="Image" class="img-fluid logo-7">
-                        </div>
-                        <div class="col-6 col-lg-3 col-md-6 text-center">
-                            <img src="images/logo_airbnb.svg" alt="Image" class="img-fluid logo-8">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
+                            <img class="lg" src="images/ktkt.png!f305cw" alt="MoA">
+                            <h5>Kế toán / Kiểm toán</h5>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
+            <div class="inline-container">
+                <img src="images/ok.png" alt="alt" height="700px" style="float: left; margin-right: 20px;">
+                <div style="float: left;">
+                    <h4 style="padding-right: 30px">"Bằng cách ghi lại ước mơ và mục tiêu trên giấy, bạn đã bắt đầu hành trình trở thành phiên bản tốt nhất của chính mình. Hãy nắm giữ tương lai trong bàn tay của bạn."</h3>
+                        <p style="padding-left: 500px"> --- Mark Victor Hansen ---</p>
 
-            <section class="bg-light pt-5 testimony-full">
-
-                <div class="owl-carousel single-carousel">
-
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 align-self-center text-center text-lg-left">
-                                <blockquote>
-                                    <p>&ldquo;Loosed as if when the chosen one is easy to refuse, they do not know the troubles of the accusers, the pains of the free one drive it back into the pain of labors in ways that reject the pleasures of pains and pleasures.&rdquo;</p>
-                                    <p><cite> &mdash; Corey Woods, @Dribbble</cite></p>
-                                </blockquote>
-                            </div>
-                            <div class="col-lg-6 align-self-end text-center text-lg-right">
-                                <img src="images/person_transparent_2.png" alt="Image" class="img-fluid mb-0">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 align-self-center text-center text-lg-left">
-                                <blockquote>
-                                    <p>&ldquo;Loosed as if when the chosen one is easy to refuse, they do not know the troubles of the accusers, the pains of the free one drive it back into the pain of labors in ways that reject the pleasures of pains and pleasures.&rdquo;</p>
-                                    <p><cite> &mdash; Chris Peters, @Google</cite></p>
-                                </blockquote>
-                            </div>
-                            <div class="col-lg-6 align-self-end text-center text-lg-right">
-                                <img src="images/person_transparent.png" alt="Image" class="img-fluid mb-0">
-                            </div>
-                        </div>
-                    </div>
-
+                        <h1 style="color: #66BC46; padding-top: 50px">Hãy để chúng tôi giúp bạn</h1>
+                        <h4>bằng cách <span class="dangerous">tải ứng dụng ngay</span>:</h4>
+                        <<img src="images/qr.png" alt="alt" height="200px" style="padding-left: 100px"/>
                 </div>
+            </div>
+            <style>
+                .inline-container {
+                    display: flex;
+                    align-items: center; /* Căn giữa theo chiều dọc */
+                    margin-bottom: 20px; /* Khoảng cách dưới */
+                }
 
-            </section>
+                .dangerous {
+                    color: red;
+                    animation: blink-animation 1s infinite; /* Tạo hiệu ứng nhấp nháy liên tục */
+                }
+
+                @keyframes blink-animation {
+                    0% {
+                        opacity: 1;
+                    }
+                    50% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+
+            </style>
 
             <footer class="site-footer">
-
                 <a href="#top" class="smoothscroll scroll-top">
                     <span class="icon-keyboard_arrow_up"></span>
                 </a>
@@ -276,35 +478,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <div class="container">
                     <div class="row mb-5">
                         <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Search Trending</h3>
+                            <h3>Công việc nổi bật</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">Graphic Design</a></li>
-                                <li><a href="#">Web Developers</a></li>
-                                <li><a href="#">Python</a></li>
-                                <li><a href="#">HTML5</a></li>
-                                <li><a href="#">CSS3</a></li>
+                                <li><a href="#">Lập trình viên Web</a></li>
+                                <li><a href="#">Thiết kế đồ họa</a></li>
+                                <li><a href="#">Nhà khoa học dữ liệu</a></li>
+                                <li><a href="#">Lập trình viên Python</a></li>
+                                <li><a href="#">Thiết kế UX/UI</a></li>
+                                <li><a href="#">Kỹ sư phần mềm</a></li>
                             </ul>
                         </div>
                         <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Company</h3>
+                            <h3>Công ty</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Career</a></li>
+                                <li><a href="#">Tìm việc làm</a></li>
+                                <li><a href="#">Đăng tin tuyển dụng</a></li>
+                                <li><a href="#">Về chúng tôi</a></li>
                                 <li><a href="#">Blog</a></li>
-                                <li><a href="#">Resources</a></li>
                             </ul>
                         </div>
                         <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Support</h3>
+                            <h3>Hỗ trợ</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Chính sách bảo mật</a></li>
+                                <li><a href="#">Điều khoản dịch vụ</a></li>
                             </ul>
                         </div>
                         <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Contact Us</h3>
+                            <h3>Liên hệ</h3>
                             <div class="footer-social">
                                 <a href="#"><span class="icon-facebook"></span></a>
                                 <a href="#"><span class="icon-twitter"></span></a>
@@ -317,13 +519,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <div class="row text-center">
                         <div class="col-12">
                             <p class="copyright"><small>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <i class="icon-heart text-danger" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank">Nguyễn Anh Tú</a>
+                                </small></p>
                         </div>
                     </div>
                 </div>
             </footer>
+
+
+            <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
+                <!--<button>Bạn cần hỗ trợ?</button>-->
+                <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
+            </a>
+            <style>
+                .messenger-button {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 1000;
+                    padding: 0px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
+
+                .messenger-icon {
+                    width: 70px; /* Kích thước của biểu tượng Messenger */
+                    height: 70px; /* Kích thước của biểu tượng Messenger */
+                }
+
+            </style>
+
 
         </div>
 
@@ -342,8 +567,48 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <script src="js/bootstrap-select.min.js"></script>
 
         <script src="js/custom.js"></script>
+        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const text = 'Vì một <span class="text-highlight">tương lai</span> không ai phải <span class="text-warning">thất nghiệp</span>!';
+                                const typingContainer = document.querySelector('.typing-container p');
+                                let index = 0;
+                                let isAdding = true;
+                                let delay = 100;
 
+                                function type() {
+                                    typingContainer.innerHTML = text.slice(0, index);
 
+                                    if (isAdding) {
+                                        if (index > text.length) {
+                                            isAdding = false;
+                                            delay = 2000; // Tạm dừng ở cuối
+                                        } else {
+                                            index++;
+                                            delay = 70; // Tốc độ gõ
+                                        }
+                                    } else {
+                                        if (index === 0) {
+                                            isAdding = true;
+                                            delay = 70; // Tốc độ gõ
+                                        } else {
+                                            index--;
+                                            delay = 30; // Tốc độ xóa
+                                        }
+                                    }
+
+                                    setTimeout(type, delay);
+                                }
+
+                                type();
+                            });
+        </script>
+
+        <script>
+            function scrollToSearchForm() {
+                const searchForm = document.getElementById('searchForm');
+                searchForm.scrollIntoView({behavior: 'smooth'});
+            }
+        </script>
     </body>
 </html>
 

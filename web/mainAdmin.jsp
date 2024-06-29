@@ -1,8 +1,3 @@
-<%-- 
-    Document   : mainAdmin
-    Created on : Oct 9, 2023, 12:42:05 AM
-    Author     : ASUS
---%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="jobs" class="java.util.ArrayList" scope="session" />
@@ -10,7 +5,7 @@
 <html lang="en">
 
     <head>
-        <title>JobBoard &mdash; Website Template by Colorlib</title>
+        <title>JobLink &mdash; Dashboard for Administrator</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="" />
@@ -90,8 +85,7 @@
                                 <!--<li><a href="CreateAcc.jsp">Create Account</a></li>-->
                                 <li><a href="getinfouser">Manage Account</a></li>
                                 <li><a href="Statistics">Statistics</a></li>
-                                <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-                                <li class="d-lg-none"><a href="login">Log In</a></li>
+                                <li><a href="displayRegistrations">Danh sách đăng ký nhận tư vấn</a></li>
                             </ul>
                         </nav>
 
