@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controler;
 
 import model.DatabaseInfo;
+import model.Registration;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,13 +9,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Registration;
 
 @WebServlet("/displayRegistrations")
 public class DisplayRegistrationsServlet extends HttpServlet {
@@ -49,6 +47,22 @@ public class DisplayRegistrationsServlet extends HttpServlet {
                 registrations.add(registration);
             }
 
+            // Kiểm tra yêu cầu sắp xếp từ request parameter
+            String sortParam = request.getParameter("sort");
+            if (sortParam != null && !sortParam.isEmpty()) {
+                // Sắp xếp theo yêu cầu
+                if (sortParam.equals("newest")) {
+                    // Sắp xếp từ mới nhất đến cũ nhất
+                    Collections.sort(registrations, Comparator.comparing(Registration::getRegistrationDate).reversed());
+                } else if (sortParam.equals("oldest")) {
+                    // Sắp xếp từ cũ nhất đến mới nhất
+                    Collections.sort(registrations, Comparator.comparing(Registration::getRegistrationDate));
+                }
+            } else {
+                // Mặc định sắp xếp từ mới nhất đến cũ nhất
+                Collections.sort(registrations, Comparator.comparing(Registration::getRegistrationDate).reversed());
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -61,3 +75,4 @@ public class DisplayRegistrationsServlet extends HttpServlet {
         request.getRequestDispatcher("/displayRegistrations.jsp").forward(request, response);
     }
 }
+ 

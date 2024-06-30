@@ -65,8 +65,14 @@
             <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                 <div class="left-content" style="display: flex; align-items: flex-end">
                     <a href="#"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
-                    <a href="#" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Việc làm</a>
-                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Hồ sơ & CV</a>
+                    <a href="#" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;" onclick="scrollToSearchForm()">Việc làm</a>
+                    <div class="dropdown">
+                        <a href="#" class="nav-link" onclick="toggleDropdown()">Hồ sơ & CV</a>
+                        <div class="dropdown-content" id="myDropdown">
+                            <a href="LoginServlet">Tạo CV</a>
+                        </div>
+                    </div>
+
                     <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
                     <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
                 </div>
@@ -94,6 +100,7 @@
                 </div>
             </nav>
 
+
             <style>
                 .nav-link:hover {
                     transform: scale(1.5); /* Zoom in 110% khi hover */
@@ -114,6 +121,71 @@
                     background-color: #1E272E;
                     border-color: #1E272E;
                 }
+
+                .nav-link:hover {
+                    transform: scale(1.5); /* Zoom in 110% khi hover */
+                    color: #66BC46;
+                }
+
+                .btn.custom-btn:hover {
+                    background-color: #66BC46;
+                    color: white;
+                }
+
+                .btn.green-btn:hover {
+                    background-color: #4CAF50;
+                    border-color: #4CAF50;
+                }
+
+                .btn.dark-btn:hover {
+                    background-color: #1E272E;
+                    border-color: #1E272E;
+                }
+
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #ffffff;
+                    min-width: 200px; /* Điều chỉnh độ rộng tối thiểu */
+                    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                    z-index: 1;
+                    border-radius: 4px; /* Bo góc dropdown */
+                    overflow: hidden; /* Ẩn phần nội dung vượt quá */
+                }
+
+                .dropdown-content a {
+                    color: black;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    transition: background-color 0.3s, color 0.3s;
+                }
+
+                .dropdown-content a:hover {
+                    background-color: #66BC46; /* Màu nền khi hover */
+                    color: white; /* Màu chữ khi hover */
+                }
+
+                .show {
+                    display: block;
+                }
+
+                .nav-link {
+                    margin-left: 50px;
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: bold;
+                    font-size: 16px;
+                    padding: 0px 10px;
+                    transition: color 0.3s, background-color 0.3s, transform 0.3s;
+                    cursor: pointer;
+                }
+
             </style>
 
             <!-- HOME -->
@@ -328,7 +400,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Tìm kiếm</button>
                                     </div>
                                 </div>
                             </form>
@@ -426,7 +498,7 @@
                             <h5>Vận tải / Kho vận</h5>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center mb-4">
-                            <img class="lg" src="images/ktkt.png!f305cw" alt="MoA">
+                            <img class="lg" src="images/ketoankiemtoan.png" alt="MoA">
                             <h5>Kế toán / Kiểm toán</h5>
                         </div>
                     </div>
@@ -441,7 +513,7 @@
 
                         <h1 style="color: #66BC46; padding-top: 50px">Hãy để chúng tôi giúp bạn</h1>
                         <h4>bằng cách <span class="dangerous">tải ứng dụng ngay</span>:</h4>
-                        <<img src="images/qr.png" alt="alt" height="200px" style="padding-left: 100px"/>
+                        <img src="images/qr.png" alt="alt" height="200px" style="padding-left: 100px"/>
                 </div>
             </div>
             <style>
@@ -568,45 +640,64 @@
 
         <script src="js/custom.js"></script>
         <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                const text = 'Vì một <span class="text-highlight">tương lai</span> không ai phải <span class="text-warning">thất nghiệp</span>!';
-                                const typingContainer = document.querySelector('.typing-container p');
-                                let index = 0;
-                                let isAdding = true;
-                                let delay = 100;
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            const text = 'Vì một <span class="text-highlight">tương lai</span> không ai phải <span class="text-warning">thất nghiệp</span>!';
+                                            const typingContainer = document.querySelector('.typing-container p');
+                                            let index = 0;
+                                            let isAdding = true;
+                                            let delay = 100;
 
-                                function type() {
-                                    typingContainer.innerHTML = text.slice(0, index);
+                                            function type() {
+                                                typingContainer.innerHTML = text.slice(0, index);
 
-                                    if (isAdding) {
-                                        if (index > text.length) {
-                                            isAdding = false;
-                                            delay = 2000; // Tạm dừng ở cuối
-                                        } else {
-                                            index++;
-                                            delay = 70; // Tốc độ gõ
-                                        }
-                                    } else {
-                                        if (index === 0) {
-                                            isAdding = true;
-                                            delay = 70; // Tốc độ gõ
-                                        } else {
-                                            index--;
-                                            delay = 30; // Tốc độ xóa
-                                        }
-                                    }
+                                                if (isAdding) {
+                                                    if (index > text.length) {
+                                                        isAdding = false;
+                                                        delay = 2000; // Tạm dừng ở cuối
+                                                    } else {
+                                                        index++;
+                                                        delay = 70; // Tốc độ gõ
+                                                    }
+                                                } else {
+                                                    if (index === 0) {
+                                                        isAdding = true;
+                                                        delay = 70; // Tốc độ gõ
+                                                    } else {
+                                                        index--;
+                                                        delay = 30; // Tốc độ xóa
+                                                    }
+                                                }
 
-                                    setTimeout(type, delay);
-                                }
+                                                setTimeout(type, delay);
+                                            }
 
-                                type();
-                            });
+                                            type();
+                                        });
         </script>
 
         <script>
             function scrollToSearchForm() {
                 const searchForm = document.getElementById('searchForm');
                 searchForm.scrollIntoView({behavior: 'smooth'});
+            }
+        </script>
+
+        <script>
+            function toggleDropdown() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches('.nav-link')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    for (var i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
             }
         </script>
     </body>

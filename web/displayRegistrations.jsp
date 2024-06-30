@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Comparator"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Registration" %>
@@ -59,6 +61,7 @@
             th {
                 background-color: #66BC46;
                 color: white;
+                cursor: pointer; /* Add cursor pointer for sorting */
             }
 
             tr:nth-child(even) {
@@ -94,6 +97,10 @@
                 align-items: center;
                 padding: 50px;
             }
+
+            td.registration-date {
+                padding-left: 10px; /* Để cách xa ngày tháng với giờ */
+            }
         </style>
     </head>
     <body>
@@ -107,41 +114,72 @@
         <!-- NAVBAR -->
         <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
             <div class="left-content" style="display: flex; align-items: flex-end">
-                <a href="./index.jsp"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
-                <a href="#" class="nav-link">Việc làm</a>
-                <a href="#" class="nav-link">Hồ sơ & CV</a>
-                <a href="#" class="nav-link">Công cụ</a>
-                <a href="#" class="nav-link">Cẩm nang nghề nghiệp</a>
+                <a href="mainAdmin.jsp"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                <a href="#" class="nav-link">Danh sách đăng ký nhận tư vấn</a>
+                <a href="getinfouser" class="nav-link">Quản lý tài khoản</a>
+                <a href="LockUserServlet" class="nav-link">Danh sách tài khoản bị khóa</a>
+                <a href="Statistics" class="nav-link">Thống kê</a>
+            </div>
+
+            <div class="dropdown d-none d-lg-inline-block ml-2">
+                <a class="btn custom-btn -btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                    Đăng xuất
+                </a>
             </div>
         </nav>
 
         <div class="abc">
             <div class="table-container">
-                <h2>Danh sách đăng ký tư vấn</h2>
+                <h2>Danh sách đăng ký nhận tư vấn</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Tên</th>
+                            <th onclick="sortTable('registrationDate')">Họ và tên</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
                             <th>Tỉnh/Thành phố</th>
                             <th>Nhu cầu tư vấn</th>
-                            <th>Ngày đăng ký</th>
+                            <th onclick="sortTable('registrationDate')" data-column="registrationDate">Ngày đăng ký</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <%
+                            // Lấy danh sách đăng ký từ attribute
                             List<Registration> registrations = (List<Registration>) request.getAttribute("registrations");
+
+                            // Kiểm tra nếu có yêu cầu sắp xếp từ request parameter
+                            String sortParam = request.getParameter("sort");
+                            if (sortParam != null && !sortParam.isEmpty()) {
+                                // Sắp xếp theo yêu cầu
+                                if (sortParam.equals("newest")) {
+                                    // Sắp xếp từ mới nhất đến cũ nhất
+                                    registrations.sort(( r1,           r2) -> r2.getRegistrationDate().compareTo(r1.getRegistrationDate()));
+                                } else if (sortParam.equals("oldest")) {
+                                    // Sắp xếp từ cũ nhất đến mới nhất
+                                    registrations.sort(Comparator.comparing(Registration::getRegistrationDate));
+                                }
+                            }
+
+                            // Format ngày tháng để hiển thị
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            // Hiển thị danh sách đã sắp xếp
                             if (registrations != null && !registrations.isEmpty()) {
                                 for (Registration reg : registrations) {
                         %>
                         <tr>
                             <td><%= reg.getName()%></td>
                             <td><%= reg.getEmail()%></td>
-                            <td><%= reg.getPhone()%></td>
+                            <td>
+                                <%= reg.getPhone()%>
+                                <a href="https://zalo.me/<%= reg.getPhone()%>" target="_blank" class="btn ">
+                                    <img src="images/zalo.jpg" width="auto" height="25px" alt="Tìm trên Zalo" style="border-radius: 5px"/>
+                                </a>
+                            </td>
                             <td><%= reg.getLocation()%></td>
                             <td><%= reg.getConsultationNeed()%></td>
-                            <td><%= reg.getRegistrationDate()%></td>
+                            <td class="registration-date" data-column="registrationDate"><%= dateFormat.format(reg.getRegistrationDate())%></td>
+
                         </tr>
                         <%
                             }
@@ -170,5 +208,68 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/bootstrap-select.min.js"></script>
         <script src="js/custom.js"></script>
+
+        <script>
+                                // Function to toggle sorting order and update URL
+                                function sortTable(columnName) {
+                                    const urlParams = new URLSearchParams(window.location.search);
+                                    const currentSort = urlParams.get('sort');
+                                    let newSort = 'newest'; // default to newest if no current sort or current sort is oldest
+
+                                    if (currentSort === 'newest') {
+                                        newSort = 'oldest';
+                                    }
+
+                                    const newUrlParams = new URLSearchParams(window.location.search);
+                                    newUrlParams.set('sort', newSort);
+
+                                    const newUrl = `${window.location.pathname}?${newUrlParams.toString()}`;
+                                            window.history.replaceState({path: newUrl}, '', newUrl);
+
+                                            sortAndDisplayTable(columnName, newSort);
+                                        }
+
+                                        // Function to sort and display table without page reload
+                                        function sortAndDisplayTable(columnName, sortType) {
+                                            const rows = [...document.querySelectorAll('tbody tr')];
+
+                                            // Sort the rows based on column name and sort type
+                                            rows.sort((row1, row2) => {
+                                                const cellValue1 = row1.querySelector(`td[data-column="${columnName}"]`).textContent.trim();
+                                                const cellValue2 = row2.querySelector(`td[data-column="${columnName}"]`).textContent.trim();
+
+                                                if (columnName === 'registrationDate') {
+                                                    const date1 = new Date(cellValue1);
+                                                    const date2 = new Date(cellValue2);
+                                                    return sortType === 'newest' ? date2 - date1 : date1 - date2;
+                                                } else {
+                                                    return sortType === 'newest' ? cellValue2.localeCompare(cellValue1) : cellValue1.localeCompare(cellValue2);
+                                                }
+                                            });
+
+                                            // Re-append rows to tbody in sorted order
+                                            const tbody = document.querySelector('tbody');
+                                            tbody.innerHTML = '';
+                                            rows.forEach(row => tbody.appendChild(row));
+                                        }
+
+                                        function searchOnZalo(phoneNumber) {
+                                            const zaloSearchURL = `https://zalo.me/${phoneNumber}`;
+                                            window.open(zaloSearchURL, '_blank');
+                                        }
+
+                                        // Ensure that the sortTable function is called correctly
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const headers = document.querySelectorAll('th');
+                                            headers.forEach(header => {
+                                                header.addEventListener('click', function () {
+                                                    if (header.textContent.trim() === 'Ngày đăng ký') {
+                                                        sortTable('registrationDate');
+                                                    }
+                                                });
+                                            });
+                                        });
+        </script>
+
     </body>
 </html>

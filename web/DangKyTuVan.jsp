@@ -154,124 +154,147 @@
         <!-- NAVBAR -->
         <nav id="navbar" class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
             <div class="left-content" style="display: flex; align-items: flex-end">
-                <a href="./index.jsp"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
-                <a href="#" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Việc làm</a>
-                <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Hồ sơ & CV</a>
+                <a href="indexServlet"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                <a href="indexServlet" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;" onclick="scrollToSearchForm()">Việc làm</a>                
+                <a href="LoginServlet" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Hồ sơ & CV</a>
                 <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
                 <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
             </div>
-        </nav>
 
-        <section class="section-hero inner-page overlay bg-image" style="background-image: url('images/dangkituvan.jpg'); height: 400px" id="home-section">
-        </section>
-
-        <div class="container">
-            <div class="title-container">
-                <h1>Đâu là giải pháp phù hợp cho doanh nghiệp của bạn?</h1>
-                <h5>Hãy để lại thông tin và các chuyên viên tư vấn tuyển dụng của JobLink sẽ liên hệ ngay với bạn</h5>
+            <div class="right-cta-menu text-right d-flex align-items-center ml-auto" style="margin-left: auto;">
+                <div class="d-flex align-items-center">
+                    <!--                    <div class="dropdown d-none d-lg-inline-block">
+                                            <a class="btn custom-btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: white; color: #66BC46; border-color: #66BC46; transition: background-color 0.3s, color 0.3s;">
+                                                Đăng tuyển & Tìm CV
+                                            </a>
+                                        </div>
+                    -->                                            <div class="dropdown d-none d-lg-inline-block ml-2">
+                        <a class="btn custom-btn green-btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #66BC46; border-color: #66BC46; color: white; transition: background-color 0.3s, color 0.3s;">
+                            Đăng tuyển & Tìm CV
+                        </a>
+                    </div>
+                    <!--                    <div class="dropdown d-none d-lg-inline-block ml-2">
+                                            <a class="btn custom-btn -btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                                                Đăng tuyển & Tìm CV-->
+                    <!--</a>-->
+                <!--</div>-->
             </div>
+            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3" style="margin-left: 1rem;">
+                <span class="icon-menu h3 m-0 p-0 mt-2"></span>
+            </a>
+        </div>
+    </nav>
 
-            <div class="sub-container">
-                <img src="images/logo.png" width="200" height="200" alt="Logo">
-                <form action="register_enterprise" method="post" class="form-container">
-                    <h3 style="color: #66BC46; padding-top: 20px; margin-bottom: 40px">Đăng ký nhận tư vấn</h3>
-                    <label for="name" style="font-weight: bold; margin: 0px">Họ và tên</label>
-                    <input type="text" id="nameForm" name="name" required placeholder="Họ và tên"><br>
+    <section class="section-hero inner-page overlay bg-image" style="background-image: url('images/dangkituvan.jpg'); height: 400px" id="home-section">
+    </section>
 
-                    <label for="email" style="font-weight: bold; margin: 0px">Email</label>
-                    <input type="email" id="emailForm" name="email" required placeholder="Email"><br>
-
-                    <label for="phone" style="font-weight: bold; margin: 0px">Số điện thoại</label>
-                    <input type="text" id="phone" name="phone" required placeholder="Số điện thoại"><br>
-
-                    <label for="location" style="font-weight: bold; margin: 0px">Tỉnh/Thành phố</label>
-                    <input type="text" id="location" name="location" required placeholder="Tỉnh/Thành phố"><br>
-
-                    <label for="consultation_need" style="font-weight: bold; margin: 0px">Nhu cầu tư vấn</label>
-                    <input type="text" id="consultation_need" name="consultation_need" required placeholder="Bạn cần hỗ trợ gì?"><br>
-
-                    <input style="margin: 0px; background-color: #66BC46" type="submit" value="Đăng ký">
-                </form>
-            </div>
+    <div class="container">
+        <div class="title-container">
+            <h1>Đâu là giải pháp phù hợp cho doanh nghiệp của bạn?</h1>
+            <h5>Hãy để lại thông tin và các chuyên viên tư vấn tuyển dụng của JobLink sẽ liên hệ ngay với bạn</h5>
         </div>
 
-        <footer class="site-footer">
-            <a href="#navbar" class="smoothscroll scroll-top">
-                <span class="icon-keyboard_arrow_up"></span>
-            </a>
+        <div class="sub-container">
+            <img src="images/logo.png" width="200" height="200" alt="Logo">
+            <form action="register_enterprise" method="post" class="form-container">
+                <h3 style="color: #66BC46; padding-top: 20px; margin-bottom: 40px">Đăng ký nhận tư vấn</h3>
+                <label for="name" style="font-weight: bold; margin: 0px">Họ và tên</label>
+                <input type="text" id="nameForm" name="name" required placeholder="Họ và tên"><br>
 
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <h3>Công việc nổi bật</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Lập trình viên Web</a></li>
-                            <li><a href="#">Thiết kế đồ họa</a></li>
-                            <li><a href="#">Nhà khoa học dữ liệu</a></li>
-                            <li><a href="#">Lập trình viên Python</a></li>
-                            <li><a href="#">Thiết kế UX/UI</a></li>
-                            <li><a href="#">Kỹ sư phần mềm</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <h3>Công ty</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Tìm việc làm</a></li>
-                            <li><a href="#">Đăng tin tuyển dụng</a></li>
-                            <li><a href="#">Về chúng tôi</a></li>
-                            <li><a href="#">Blog</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <h3>Hỗ trợ</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Liên hệ</a></li>
-                            <li><a href="#">Chính sách bảo mật</a></li>
-                            <li><a href="#">Điều khoản dịch vụ</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <h3>Liên hệ</h3>
-                        <div class="footer-social">
-                            <a href="https://www.facebook.com/profile.php?id=61561023315607"><span class="icon-facebook"></span></a>
-                            <a href="https://x.com/"><span class="icon-twitter"></span></a>
-                            <a href="https://www.instagram.com/"><span class="icon-instagram"></span></a>
-                            <a href="https://www.linkedin.com/"><span class="icon-linkedin"></span></a>
-                        </div>
-                    </div>
+                <label for="email" style="font-weight: bold; margin: 0px">Email</label>
+                <input type="email" id="emailForm" name="email" required placeholder="Email"><br>
+
+                <label for="phone" style="font-weight: bold; margin: 0px">Số điện thoại</label>
+                <input type="text" id="phone" name="phone" required placeholder="Số điện thoại"><br>
+
+                <label for="location" style="font-weight: bold; margin: 0px">Tỉnh/Thành phố</label>
+                <input type="text" id="location" name="location" required placeholder="Tỉnh/Thành phố"><br>
+
+                <label for="consultation_need" style="font-weight: bold; margin: 0px">Nhu cầu tư vấn</label>
+                <input type="text" id="consultation_need" name="consultation_need" required placeholder="Bạn cần hỗ trợ gì?"><br>
+
+                <input style="margin: 0px; background-color: #66BC46" type="submit" value="Đăng ký">
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <a href="#navbar" class="smoothscroll scroll-top">
+            <span class="icon-keyboard_arrow_up"></span>
+        </a>
+
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Công việc nổi bật</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Lập trình viên Web</a></li>
+                        <li><a href="#">Thiết kế đồ họa</a></li>
+                        <li><a href="#">Nhà khoa học dữ liệu</a></li>
+                        <li><a href="#">Lập trình viên Python</a></li>
+                        <li><a href="#">Thiết kế UX/UI</a></li>
+                        <li><a href="#">Kỹ sư phần mềm</a></li>
+                    </ul>
                 </div>
-
-                <div class="row text-center">
-                    <div class="col-12">
-                        <p class="copyright"><small>
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <i class="icon-heart text-danger" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank">Nguyễn Anh Tú</a>
-                            </small></p>
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Công ty</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Tìm việc làm</a></li>
+                        <li><a href="#">Đăng tin tuyển dụng</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Hỗ trợ</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Liên hệ</h3>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61561023315607"><span class="icon-facebook"></span></a>
+                        <a href="https://x.com/"><span class="icon-twitter"></span></a>
+                        <a href="https://www.instagram.com/"><span class="icon-instagram"></span></a>
+                        <a href="https://www.linkedin.com/"><span class="icon-linkedin"></span></a>
                     </div>
                 </div>
             </div>
-        </footer>
 
-        <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
-            <!--<button>Bạn cần hỗ trợ?</button>-->
-            <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
-        </a>
-        <!-- SCRIPTS -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/isotope.pkgd.min.js"></script>
-        <script src="js/stickyfill.min.js"></script>
-        <script src="js/jquery.fancybox.min.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/jquery.animateNumber.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/quill.min.js"></script>
-        <script src="js/bootstrap-select.min.js"></script>
-        <script src="js/custom.js"></script>
-        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-        <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    </body>
+            <div class="row text-center">
+                <div class="col-12">
+                    <p class="copyright"><small>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <i class="icon-heart text-danger" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank">Nguyễn Anh Tú</a>
+                        </small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
+        <!--<button>Bạn cần hỗ trợ?</button>-->
+        <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
+    </a>
+    <!-- SCRIPTS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/stickyfill.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/quill.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+</body>
 </html>

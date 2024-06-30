@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-/**
- *
- * @author ASUS
- */
 public class EmailUtil {
 
     public static void sendActivationEmail(String toEmail, String activationCode) {
-        final String username = "anhnttde170203@fpt.edu.vn"; // Thay thế bằng địa chỉ email của bạn
-        final String password = "gdvg zpds yumf scbh"; // Thay thế bằng mật khẩu của bạn
+        final String username = "nguyenanhtu3703@gmail.com"; // Thay thế bằng địa chỉ email của bạn
+        final String password = "ietj qlee vvwb dtce"; // Thay thế bằng mật khẩu của bạn
 
         // Cấu hình thông tin máy chủ email
         Properties props = new Properties();
@@ -37,8 +29,15 @@ public class EmailUtil {
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(username));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            msg.setSubject("Activation Email");
-            msg.setText("Your activation code is: " + activationCode);
+            msg.setSubject("Mã kích hoạt tài khoản JobLink");
+            String emailContent = "Xin chào,\n\n";
+            emailContent += "Chào mừng bạn đến với JobLink! Dưới đây là mã kích hoạt tài khoản của bạn:\n\n";
+            emailContent += "Mã kích hoạt: " + activationCode + "\n\n";
+            emailContent += "Vui lòng truy cập vào trang web của chúng tôi và nhập mã kích hoạt này để hoàn tất quá trình kích hoạt tài khoản của bạn.\n\n";
+            emailContent += "Nếu bạn gặp bất kỳ vấn đề nào hoặc cần hỗ trợ, xin vui lòng liên hệ với chúng tôi qua https://m.me/295506026989207.\n\n";
+            emailContent += "Trân trọng,\n";
+            emailContent += "[JobLink]";
+            msg.setText(emailContent);
 
             // Gửi email
             Transport.send(msg);
@@ -49,11 +48,11 @@ public class EmailUtil {
             throw new RuntimeException(e);
         }
     }
-    
-    public static void SendMailAccep(String toEmails){
+
+    public static void SendMailAccep(String toEmails) {
         final String username = "anhnttde170203@fpt.edu.vn"; // Thay thế bằng địa chỉ email của bạn
         final String password = "gdvg zpds yumf scbh"; // Thay thế bằng mật khẩu của bạn
-        
+
         // Cấu hình thông tin máy chủ email
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -66,17 +65,16 @@ public class EmailUtil {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-            
+
         });
-        
-        
+
         try {
             // Tạo tin nhắn email
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(username));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmails));
             msg.setSubject("Notice Email");
-            msg.setText("Your post has been approved" );
+            msg.setText("Your post has been approved");
 
             // Gửi email
             Transport.send(msg);
@@ -87,10 +85,11 @@ public class EmailUtil {
             throw new RuntimeException(e);
         }
     }
-    public static void SendEmailReject(String toEmails){
+
+    public static void SendEmailReject(String toEmails) {
         final String username = "anhnttde170203@fpt.edu.vn"; // Thay thế bằng địa chỉ email của bạn
         final String password = "gdvg zpds yumf scbh"; // Thay thế bằng mật khẩu của bạn
-        
+
         // Cấu hình thông tin máy chủ email
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -103,7 +102,7 @@ public class EmailUtil {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-            
+
         });
         try {
             // Tạo tin nhắn email
@@ -111,7 +110,7 @@ public class EmailUtil {
             msg.setFrom(new InternetAddress(username));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmails));
             msg.setSubject("Notice Email");
-            msg.setText("Your post has been reject" );
+            msg.setText("Your post has been reject");
 
             // Gửi email
             Transport.send(msg);
@@ -122,10 +121,11 @@ public class EmailUtil {
             throw new RuntimeException(e);
         }
     }
-    public static void SendMailAccepCV(String toEmails){
+
+    public static void SendMailAccepCV(String toEmails) {
         final String username = "anhnttde170203@fpt.edu.vn"; // Thay thế bằng địa chỉ email của bạn
         final String password = "gdvg zpds yumf scbh"; // Thay thế bằng mật khẩu của bạn
-        
+
         // Cấu hình thông tin máy chủ email
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -138,17 +138,16 @@ public class EmailUtil {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-            
+
         });
-        
-        
+
         try {
             // Tạo tin nhắn email
             MimeMessage msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(username));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmails));
             msg.setSubject("Notice Email");
-            msg.setText("Your CV has been approved by the Enterprise" );
+            msg.setText("Your CV has been approved by the Enterprise");
 
             // Gửi email
             Transport.send(msg);
@@ -159,10 +158,11 @@ public class EmailUtil {
             throw new RuntimeException(e);
         }
     }
-    public static void SendEmailRejectCV(String toEmails){
+
+    public static void SendEmailRejectCV(String toEmails) {
         final String username = "anhnttde170203@fpt.edu.vn"; // Thay thế bằng địa chỉ email của bạn
         final String password = "gdvg zpds yumf scbh"; // Thay thế bằng mật khẩu của bạn
-        
+
         // Cấu hình thông tin máy chủ email
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -175,7 +175,7 @@ public class EmailUtil {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-            
+
         });
         try {
             // Tạo tin nhắn email
@@ -183,7 +183,7 @@ public class EmailUtil {
             msg.setFrom(new InternetAddress(username));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmails));
             msg.setSubject("Notice Email");
-            msg.setText("Your CV has been reject by the Enterprise" );
+            msg.setText("Your CV has been reject by the Enterprise");
 
             // Gửi email
             Transport.send(msg);
