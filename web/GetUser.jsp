@@ -89,14 +89,14 @@
 
             <!-- HOME -->
             <section class="section-hero home-section overlay inner-page bg-image"
-                     style="background-image: url('images/hero_1.jpg');" id="home-section">
+                     style="background-image: url('images/manageaccount.jpg');" id="home-section">
 
                 <div class="container">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-12">
                             <div class="mb-5 text-center">
-                                <h1 class="text-white font-weight-bold">Job Search Platform JobC - Job Connection</h1>
-                                <p>The easiest way to connect between Employers and Job Seekers!</p>
+                                <h1 style="padding-right: 500px" class="text-white font-weight-bold">Hệ thống quản lý tài khoản</h1>
+                                <!--<p>The easiest way to connect between Employers and Job Seekers!</p>-->
                             </div>
                         </div>
                     </div>
@@ -112,20 +112,8 @@
 
             <%-- Kiểm tra xem danh sách người dùng có tồn tại không --%>
             <c:if test="${res != null && not empty res}">
-                <section class="site-section col-md-12" id="next">
-
+                <section class="site-section col-md-12" id="next" style="padding-top: 0px">
                     <div class="container col-md-12">
-                        <!--<button class="btn-primary" style="float: right;">Go to locked user accounts</button>-->
-                        <div class="row mb-5 justify-content-center">
-                            <div class="col-md-7 text-center">
-                                <h2 class="section-title mb-2">Manage User Accounts</h2>
-
-                            </div>
-
-                        </div>
-                        <a href="LockUserServlet">
-                            <button  class="btn-primary" style="float: right; border-radius: 5px">Go to locked user accounts</button>
-                        </a>
                         <!-- Use a table to display user data -->
                         <table class="table">
                             <thead>

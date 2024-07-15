@@ -25,24 +25,30 @@ public class EmailUtil {
         });
         // tin nhắn
         try {
-            // Tạo tin nhắn email
-            MimeMessage msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(username));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            msg.setSubject("Mã kích hoạt tài khoản JobLink");
-            String emailContent = "Xin chào,\n\n";
-            emailContent += "Chào mừng bạn đến với JobLink! Dưới đây là mã kích hoạt tài khoản của bạn:\n\n";
-            emailContent += "Mã kích hoạt: " + activationCode + "\n\n";
-            emailContent += "Vui lòng truy cập vào trang web của chúng tôi và nhập mã kích hoạt này để hoàn tất quá trình kích hoạt tài khoản của bạn.\n\n";
-            emailContent += "Nếu bạn gặp bất kỳ vấn đề nào hoặc cần hỗ trợ, xin vui lòng liên hệ với chúng tôi qua https://m.me/295506026989207.\n\n";
-            emailContent += "Trân trọng,\n";
-            emailContent += "[JobLink]";
-            msg.setText(emailContent);
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject("Activation Code for JobLink' account");
 
-            // Gửi email
-            Transport.send(msg);
+            String emailContent = "<!DOCTYPE html>"
+                    + "<html lang=\"vi\">"
+                    + "<head>"
+                    + "<meta charset=\"UTF-8\">"
+                    + "<title>Kích hoạt tài khoản</title>"
+                    + "</head>"
+                    + "<body>"
+                    + "<p>Chào mừng bạn đến với JobLink!</p>"
+                    + "<p>Dưới đây là mã kích hoạt tài khoản của bạn:</p>"
+                    + "<h3>Mã kích hoạt: " + activationCode + "</h3>"
+                    + "<p>Vui lòng truy cập vào trang web của chúng tôi và nhập mã kích hoạt này để hoàn tất quá trình kích hoạt tài khoản của bạn.</p>"
+                    + "<p>Nếu bạn gặp bất kỳ vấn đề nào hoặc cần hỗ trợ, xin vui lòng liên hệ với chúng tôi qua <a href=\"https://m.me/295506026989207\">Facebook Messenger</a>.</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "</body>"
+                    + "</html>";
 
-            System.out.println("Email sent successfully");
+            message.setContent(emailContent, "text/html; charset=UTF-8");
+
+            Transport.send(message);
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);

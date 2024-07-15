@@ -1,18 +1,13 @@
-<%-- 
-    Document   : Login
-    Created on : Oct 6, 2023, 1:42:37 PM
-    Author     : ASUS
---%>
-
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
     <head>
-        <title>JobC</title>
+        <title>JobLink &dash; Log in to JobLink</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <link rel="shortcut icon" href="images/logo.png">
 
         <link rel="stylesheet" href="css/custom-bs.css">
         <link rel="stylesheet" href="css/jquery.fancybox.min.css">
@@ -25,7 +20,9 @@
 
 
         <!-- MAIN CSS -->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/login.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     </head>
 
     <body id="top">
@@ -37,226 +34,244 @@
             </div>
         </div>
 
-
-        <div class="site-wrap">
-
-            <div class="site-mobile-menu site-navbar-target">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
+        <!-- NAVBAR -->
+        <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <div class="left-content" style="display: flex; align-items: flex-end">
+                <a href="index.jsp"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                <a href="index.jsp" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;" onclick="scrollToSearchForm()">Việc làm</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link" onclick="toggleDropdown()">Hồ sơ & CV</a>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="#">Tạo CV</a>
                     </div>
                 </div>
-                <div class="site-mobile-menu-body"></div>
-            </div> <!-- .site-mobile-menu -->
 
-
-            <!-- NAVBAR -->
-            <header class="site-navbar mt-3">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="site-logo col-6"><a href="index.jsp">JobC</a></div>
-
-                        <nav class="mx-auto site-navigation">
-                            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                <li><a href="indexServlet" class="nav-link">Home</a></li>
-                            </ul>
-                        </nav>
-
-                        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                            <div class="ml-auto">
-                                <a href="SignUpServlet" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                        class="mr-2 icon-lock_outline"></span>Sign Up</a>
-                            </div>
-                        </div>
-
+                <a href="index.jsp" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
+                <a href="index.jsp" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
+            </div>
+            <div class="right-cta-menu text-right d-flex align-items-center ml-auto" style="margin-left: auto;">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown d-none d-lg-inline-block">
+                        <a class="" href="#" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: white; color: #66BC46; border-color: #66BC46; transition: background-color 0.3s, color 0.3s;">
+                            Đăng nhập
+                        </a>
+                    </div>
+                    <div class="dropdown d-none d-lg-inline-block ml-2">
+                        <a class="" href="SignUpServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #66BC46; border-color: #66BC46; color: white; transition: background-color 0.3s, color 0.3s;">
+                            Đăng ký
+                        </a>
+                    </div>
+                    <div class="dropdown d-none d-lg-inline-block ml-2">
+                        <a class="" href="DangKyTuVan.jsp" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                            Đăng tuyển & tìm hồ sơ
+                        </a>
                     </div>
                 </div>
-            </header>
-
-            <!-- HOME -->
-            <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');"
-                     id="home-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <h1 class="text-white font-weight-bold">Login</h1>
-                            <div class="custom-breadcrumbs">
-                                <a href="indexServlet">Home</a> <span class="mx-2 slash">/</span>
-                                <span class="text-white"><strong>Log In</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="offset-3 col-lg-6 mb-5">
-                            <h2 class="mb-4">Log In To JobC</h2>
-                            <div class="message-response h5 mt-3 " style="color: red">
-                                ${inputError}
-                            </div>
-                            <form action="LoginServlet" method="POST" class="p-4 border rounded">
-                                <div class="form-group mb-3">
-                                    <label class="label" for="">Email</label>
-                                    <input type="text" class="form-control" id="username-input" name="username-login" placeholder="Username">
-                                    <span class="message-form"></span>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="label" for="">Password</label>
-                                    <input type="password" class="form-control" id="pass-input" name="pass-login" placeholder="Password">
-                                    <span class="message-form"></span>
-                                </div>
-
-                                <div class="form-group mb-4">
-                                    <label class="label" for="role">Role</label>
-                                    <select class="form-control" name="role-login">
-                                        <option value="User">User</option>
-                                        <option value="Enterprise">Enterprise</option>
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group mb-4">
-                                    <div class="row justify-content-center">
-                                        <div class="form-check col-lg-6 text-center">
-                                            <input class="form-check-input" type="checkbox" value="" name="remember" value="on" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Remember me ?
-                                            </label>
-                                        </div>
-                                        <div class="col-lg-6 text-center">
-                                            <a class="form-check-label" href="ForgotPasswordServlet">
-                                                Forgot Password
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row form-group">
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn px-5 btn-primary text-white">Login</button>
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <label> Or login with</label>
-                                    
-                                </div>
-
-                                <form action="LoginGGServlet" method="GET" class="p-4 border rounded d-flex justify-content-center col-md-12">
-                                    <div class="d-flex form-group justify-content-between">
-                                        <div class="col-md-6 text-center">
-                                            <button href="https://accounts.google.com/o/oauth2/auth?scope=profile+email&redirect_uri=http://localhost:8080/SWP_JC/LoginGGServlet&response_type=code&client_id=311060052304-v29rma73e6ji73uaroul7b4nft79iods.apps.googleusercontent.com&approval_prompt=force" type="submit" class="btn px-4 btn-primary text-white">
-                                                <span class="">
-                                                    <i class="icon-google "></i>
-                                                </span>
-                                                Google Account
-                                            </button>
-<!--                                        </div>
-                                        <div class="col-md-6 text-center">
-                                            <button type="submit" class="btn px-4 btn-primary text-white">
-                                                <span class="">
-                                                    <i class="icon-facebook "></i>
-                                                </span>
-                                                Facebook Account
-                                            </button>
-                                        </div>-->
-                                    </div>
-                                <!--</form>-->
-
-                        </div>
-                                                                </form>
-
-                    </div>
-                </div>
-            </section>
-            <footer class="site-footer">
-
-                <a href="#top" class="smoothscroll scroll-top">
-                    <span class="icon-keyboard_arrow_up"></span>
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3" style="margin-left: 1rem;">
+                    <span class="icon-menu h3 m-0 p-0 mt-2"></span>
                 </a>
+            </div>
+        </nav>
 
-                <div class="container">
-                    <div class="row mb-5">
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Search Trending</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">Graphic Design</a></li>
-                                <li><a href="#">Web Developers</a></li>
-                                <li><a href="#">Python</a></li>
-                                <li><a href="#">HTML5</a></li>
-                                <li><a href="#">CSS3</a></li>
-                            </ul>
+
+        <style>
+            .nav-link:hover {
+                transform: scale(1.5); /* Zoom in 110% khi hover */
+                color: #66BC46;
+            }
+
+            .btn.custom-btn:hover {
+                background-color: #66BC46;
+                color: white;
+            }
+
+            .btn.green-btn:hover {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+            }
+
+            .btn.dark-btn:hover {
+                background-color: #1E272E;
+                border-color: #1E272E;
+            }
+
+            .nav-link:hover {
+                transform: scale(1.5); /* Zoom in 110% khi hover */
+                color: #66BC46;
+            }
+
+            .btn.custom-btn:hover {
+                background-color: #66BC46;
+                color: white;
+            }
+
+            .btn.green-btn:hover {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+            }
+
+            .btn.dark-btn:hover {
+                background-color: #1E272E;
+                border-color: #1E272E;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                min-width: 200px; /* Điều chỉnh độ rộng tối thiểu */
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                border-radius: 4px; /* Bo góc dropdown */
+                overflow: hidden; /* Ẩn phần nội dung vượt quá */
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #66BC46; /* Màu nền khi hover */
+                color: white; /* Màu chữ khi hover */
+            }
+
+            .show {
+                display: block;
+            }
+
+            .nav-link {
+                margin-left: 50px;
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 0px 10px;
+                transition: color 0.3s, background-color 0.3s, transform 0.3s;
+                cursor: pointer;
+            }
+
+        </style>
+
+
+        <img class="wave" src="images/wave.png">
+        <div class="container">
+            <div class="img">
+                <img src="images/bg.svg">
+            </div>
+            <div class="login-content">
+                <form action="LoginServlet" method="POST">
+                    <div class="message-response h5 " style="color: red">
+                        ${inputError}
+                    </div>
+                    <img src="images/avatar.svg">
+                    <h2 class="title">Login to JobLink</h2>
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-user"></i>
                         </div>
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Company</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Resources</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Support</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Contact Us</h3>
-                            <div class="footer-social">
-                                <a href="#"><span class="icon-facebook"></span></a>
-                                <a href="#"><span class="icon-twitter"></span></a>
-                                <a href="#"><span class="icon-instagram"></span></a>
-                                <a href="#"><span class="icon-linkedin"></span></a>
-                            </div>
+                        <div class="div">
+                            <h5>Email</h5>
+                            <input type="email" class="input" id="username-input" name="username-login" required>
+                            <span class="message-form"></span>
                         </div>
                     </div>
-
-                    <div class="row text-center">
-                        <div class="col-12">
-                            <p class="copyright"><small>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-                                    with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                                                                                         target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </small></p>
+                    <div class="input-div pass">
+                        <div class="i">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Password</h5>
+                            <input type="password" class="input" id="pass-input" name="pass-login" required>
+                            <span class="message-form"></span>
                         </div>
                     </div>
+                    <div class="form-group mb-4">
+                        <label class="label" for="role">Role</label>
+                        <select class="form-control" name="role-login">
+                            <option value="User">User</option>
+                            <option value="Enterprise">Enterprise</option>
+
+                        </select>
+                    </div>
+                    <div class="content-2">
+                        <div class="check-remember">
+                            <input class="form-check-input" type="checkbox" value="" name="remember" value="on"
+                                   id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Remember me ?
+                            </label>
+                        </div>
+                        <a class="form-check-label" href="ForgotPasswordServlet">Forgot Password?</a>
+                    </div>
+                    <input type="submit" class="btn" value="Login">
+                    <div class="text-center">
+                        <label> Or login with</label>
+                    </div>
+                </form>
+                <form class="bg-lgfb" action="LoginGGServlet" method="GET">
+                    <input
+                        href="https://accounts.google.com/o/oauth2/auth?scope=profile+email&redirect_uri=http://localhost:8080/SWP_JC/LoginGGServlet&response_type=code&client_id=311060052304-v29rma73e6ji73uaroul7b4nft79iods.apps.googleusercontent.com&approval_prompt=force"
+                        type="submit" class="btn-fb" value="Login Facebook">
+                </form>
+                <div class="register-link">
+                    <p>Don't have an account? </p>
+                    <a href="SignUpServlet"> Register</a>
                 </div>
-            </footer>
+            </div>
+            <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
+                <!--<button>Bạn cần hỗ trợ?</button>-->
+                <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
+            </a>
+            <style>
+                .messenger-button {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 1000;
+                    padding: 0px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
 
+                .messenger-icon {
+                    width: 70px; /* Kích thước của biểu tượng Messenger */
+                    height: 70px; /* Kích thước của biểu tượng Messenger */
+                }
+            </style>
         </div>
+        <script type="text/javascript" src="js/login.js"></script>
 
-        <!-- SCRIPTS -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/isotope.pkgd.min.js"></script>
-        <script src="js/stickyfill.min.js"></script>
-        <script src="js/jquery.fancybox.min.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
+    </div>
 
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/jquery.animateNumber.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/quill.min.js"></script>
+    <!-- SCRIPTS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/stickyfill.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
 
-
-        <script src="js/bootstrap-select.min.js"></script>
-
-        <script src="js/custom.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/quill.min.js"></script>
 
 
+    <script src="js/bootstrap-select.min.js"></script>
 
-    </body>
+    <script src="js/custom.js"></script>
+
+
+
+</body>
 
 </html>

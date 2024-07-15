@@ -2,9 +2,10 @@
 <html lang="en">
 
     <head>
-        <title>JobC &mdash; Interview Page</title>
+        <title>JobLink &mdash; Phỏng vấn online cùng JobLink</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="images/logo.png">
 
 
         <link rel="stylesheet" href="css/custom-bs.css">
@@ -56,11 +57,11 @@
                 display: none;
             }
             #screenVideo {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 20px;
-            
-        }
+                width: 100%;
+                max-width: 800px;
+                border-radius: 20px;
+
+            }
         </style>
     </head>
 
@@ -87,33 +88,132 @@
 
 
             <!-- NAVBAR -->
-            <header class="site-navbar mt-3">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="site-logo col-6"><a href="mainUser.jsp">JobC</a></div>
+            <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="left-content" style="display: flex; align-items: flex-end">
+                    <a href="BackHomePageUser"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                    <a href="SearchUser" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Việc làm</a>
+                    <a href="CreateCV.jsp" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Hồ sơ & CV</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Phỏng vấn online</a>
 
-                        <nav class="mx-auto site-navigation">
-                            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                <li><a href="mainUser.jsp" class="nav-link">Home</a></li>
-
-                            </ul>
-                        </nav>
-
-                    </div>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
                 </div>
-            </header>
+
+                <div class="right-cta-menu text-right d-flex align-items-center ml-auto" style="margin-left: auto;">
+                    <div class="d-flex align-items-center">
+                        <!--                        <div class="dropdown d-none d-lg-inline-block">
+                                                    <a class="btn custom-btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: white; color: #66BC46; border-color: #66BC46; transition: background-color 0.3s, color 0.3s;">
+                                                        Đăng nhập
+                                                    </a>
+                                                </div>
+                                                <div class="dropdown d-none d-lg-inline-block ml-2">
+                                                    <a class="btn custom-btn green-btn" href="SignUpServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #66BC46; border-color: #66BC46; color: white; transition: background-color 0.3s, color 0.3s;">
+                                                        Đăng ký
+                                                    </a>
+                                                </div>-->
+                        <div class="dropdown d-none d-lg-inline-block ml-2">
+                            <a class="btn custom-btn dark-btn" href="LogOutServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3" style="margin-left: 1rem;">
+                        <span class="icon-menu h3 m-0 p-0 mt-2"></span>
+                    </a>
+                </div>
+            </nav>
+
+            <style>
+                .nav-link:hover {
+                    transform: scale(1.5); /* Zoom in 110% khi hover */
+                    color: #66BC46;
+                }
+
+                .btn.custom-btn:hover {
+                    background-color: #66BC46;
+                    color: white;
+                }
+
+                .btn.green-btn:hover {
+                    background-color: #4CAF50;
+                    border-color: #4CAF50;
+                }
+
+                .btn.dark-btn:hover {
+                    background-color: #1E272E;
+                    border-color: #1E272E;
+                }
+
+                .frame {
+                    margin-top: 50px;
+                    margin-bottom: 10px;
+                }
+
+                /* CSS bên ngoài để điều chỉnh textarea và các phần tử lân cận */
+                textarea#accessTokenArea {
+                    width: 100%; /* Sử dụng chiều rộng 100% của phần tử chứa (ở đây là 570px của đoạn trên) */
+                    max-width: 570px; /* Giới hạn chiều rộng tối đa của textarea là 570px */
+                    height: 80px; /* Chiều cao cố định là 80px */
+                    resize: vertical; /* Cho phép thay đổi chiều cao theo chiều dọc */
+                    padding: 10px; /* Đệm để tạo khoảng cách giữa nội dung và khung textarea */
+                    box-sizing: border-box; /* Đảm bảo chiều rộng và chiều cao tính từng toàn bộ kích thước của phần tử */
+                    border: 1px solid #ccc; /* Viền bo góc với màu sắc mờ nhạt */
+                    border-radius: 6px; /* Bo tròn góc textarea */
+                    font-size: 14px; /* Kích thước chữ tiêu chuẩn cho nội dung */
+                    line-height: 1.5; /* Khoảng cách giữa các dòng */
+                    font-family: Arial, sans-serif; /* Kiểu phông chữ sử dụng */
+                }
+
+                button {
+                    margin: 5px; /* Khoảng cách giữa các nút */
+                    padding: 10px 20px; /* Đệm xung quanh nút */
+                    border: none; /* Không có đường viền */
+                    background-color: #007bff; /* Màu nền của nút */
+                    color: #fff; /* Màu chữ trắng */
+                    border-radius: 6px; /* Bo góc nút */
+                    cursor: pointer; /* Con trỏ chuột khi rê chuột vào nút */
+                }
+
+                button:disabled {
+                    opacity: 0.6; /* Điều chỉnh độ mờ của nút khi bị vô hiệu hóa */
+                    cursor: not-allowed; /* Con trỏ chuột "not-allowed" khi nút bị vô hiệu hóa */
+                }
+                .frame {
+                background-color: #f0f0f0; /* Màu nền xám */
+                border: 1px solid #ccc; /* Viền xám nhạt */
+                padding: 20px; /* Khoảng cách giữa nội dung và khung */
+                border-radius: 8px; /* Bo góc khung */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+            }
+
+            .token-container {
+                margin-top: 15px; /* Khoảng cách từ tiêu đề xuống mã token */
+            }
+
+            .copy-icon {
+                cursor: pointer;
+                margin-bottom: 5px;
+            }
+
+            .token {
+                font-family: monospace;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+            </style>
 
             <!-- HOME -->
-            <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');"
+            <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/interview.png'); height: 500px"
                      id="home-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7">
-                            <h1 class="text-white font-weight-bold">Welcome to Interview System</h1>
-                            <div class="custom-breadcrumbs">
-                                <a href="mainUser.jsp">Home</a> <span class="mx-2 slash">/</span>
-                                <span class="text-white"><strong>Interview</strong></span>
-                            </div>
+                        <div class="col-md-6">
+                            <h1 class="text-white font-weight-bold">Phỏng vấn cùng JobLink</h1>
+                            <p class="text-white">Chào mừng bạn đến với hệ thống phỏng vấn trực tuyến của chúng tôi! Với tính năng video call trực tiếp, bạn có thể tham gia phỏng vấn một cách dễ dàng và tiện lợi. Hãy chuẩn bị sẵn sàng để bắt đầu buổi phỏng vấn của bạn.</p>
+                            <!--                            <div class="custom-breadcrumbs">
+                                                            <a href="BackHomePageUser">Home</a> <span class="mx-2 slash">/</span>
+                                                            <span class="text-white"><strong>Interview</strong></span>
+                                                        </div>-->
                         </div>
                     </div>
                 </div>
@@ -122,32 +222,22 @@
             <section >
             </section>
 
-            <div class="d-flex justify-content-center flex-column align-items-center">
-                <img src="https://i.pinimg.com/736x/19/76/ba/1976bab97a6603b6742bba55fe1c1e2b.jpg" alt="alt"/>
-            </div>
-
             <div class="container">
                 <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center flex-column align-items-center">
-                        <h5>Enterprise:</h5>
-                        <div class="token-container">
-                            <div class="copy-icon" onclick="copyToClipboard('enterpriseAccessToken')">&#128203;</div>
-                            <p id="enterpriseAccessToken" class="token">eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLjBTSW9OOUJCbHlpVmtXcWxLMVJnczF6RWY4UVMyU1owLTE2OTg4ODk2MTciLCJpc3MiOiJTSy4wLjBTSW9OOUJCbHlpVmtXcWxLMVJnczF6RWY4UVMyU1owIiwiZXhwIjoxNzAxNDgxNjE3LCJ1c2VySWQiOiJFbnRlcnByaXNlIn0.JNEzXCRxd1zCT1aedxjGlX7yw-iP4eUBzImXC0UD_IM</p>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center flex-column align-items-center">
-                        <h5>User:</h5>
-                        <div class="token-container">
-                            <div class="copy-icon" onclick="copyToClipboard('userAccessToken')">&#128203;</div>
-                            <p id="userAccessToken" class="token">eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLjBTSW9OOUJCbHlpVmtXcWxLMVJnczF6RWY4UVMyU1owLTE2OTg4ODk2NTciLCJpc3MiOiJTSy4wLjBTSW9OOUJCbHlpVmtXcWxLMVJnczF6RWY4UVMyU1owIiwiZXhwIjoxNzAxNDgxNjU3LCJ1c2VySWQiOiJVc2VyIn0.iMfDZ78jK5ldHZ_9kbDtcnm7jnqjkMfeaw5A2IdTooo</p>
+                    <div class="frame">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h5>Access token for Candidate role:</h5>
+                            <div class="token-container">
+                                <div class="copy-icon" onclick="copyToClipboard('enterpriseAccessToken')">&#128203;</div>
+                                <p id="enterpriseAccessToken" class="token">eyJjdHkiOiJzdHJpbmdlZS1hcGk7dj0xIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJTSy4wLnBWNkJtTVFQZ3NwM08wdnVrUmxkRlJsaFExelNSUC0xNzIwNjc5MjI2IiwiaXNzIjoiU0suMC5wVjZCbU1RUGdzcDNPMHZ1a1JsZEZSbGhRMXpTUlAiLCJleHAiOjE3MjMyNzEyMjYsInVzZXJJZCI6IkNhbmRpZGF0ZSJ9.CwGLf49OJIKKq7Ankbtni9uPGgRoHJsQBVgPJFP5_9M</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center flex-column align-items-center">
-                <textarea id="accessTokenArea" rows="6" cols="50" style="height: 80px; width: 1000px; resize: none;" placeholder="Enter your access token here:"></textarea>
+                <textarea id="accessTokenArea" rows="6" cols="50" placeholder="Enter your access token here:"></textarea>
                 <br>
                 <button id="loginBtn">Join room</button>
                 <span class="text-center" style="color: red">Status: <span id="loggedUserId">Have not joined yet!</span></span>
@@ -181,7 +271,7 @@
                 <div>
                     <video id="localVideo" playsinline autoplay muted style="width: 600px; background: white; border-radius: 20px"></video>
                     <video id="remoteVideo" playsinline autoplay style="width: 600px; background: white; border-radius: 20px"></video>
-                    
+
 
                 </div>
                 <div class="d-flex justify-content-center flex-column align-items-center">
@@ -253,7 +343,26 @@
                     </div>
                 </div>
             </footer>
+            <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
+                <!--<button>Bạn cần hỗ trợ?</button>-->
+                <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
+            </a>
+            <style>
+                .messenger-button {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 1000;
+                    padding: 0px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
 
+                .messenger-icon {
+                    width: 70px; /* Kích thước của biểu tượng Messenger */
+                    height: 70px; /* Kích thước của biểu tượng Messenger */
+                }
+            </style>
         </div>
 
         <!-- SCRIPTS -->
@@ -286,23 +395,6 @@
                                             document.body.removeChild(textArea);
                                             alert("Token copied to clipboard!");
                                         }
-        </script>
-
-        <script>
-            document.getElementById('startScreenShare').addEventListener('click', startScreenShare);
-
-async function startScreenShare() {
-    try {
-        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-        const screenVideo = document.getElementById('screenVideo');
-        screenVideo.srcObject = stream;
-        screenVideo.style.display = 'block';
-        screenVideo.play(); // Add this line to start playing the video as soon as there is data
-    } catch (error) {
-        console.error('Error accessing screen:', error);
-    }
-}
-
         </script>
     </body>
 </html>

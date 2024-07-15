@@ -1,16 +1,22 @@
+<%-- 
+    Document   : mainEnter
+    Created on : Oct 7, 2023, 1:18:39 PM
+    Author     : ASUS
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
     <head>
-        <title>JobC</title>
+        <title>JobLink &dash; Homepage User</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="Free-Template.co" />
         <link rel="shortcut icon" href="ftco-32x32.png">
+        <link rel="shortcut icon" href="images/logo.png">
 
         <link rel="stylesheet" href="css/custom-bs.css">
         <link rel="stylesheet" href="css/jquery.fancybox.min.css">
@@ -50,6 +56,54 @@
 
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/style.css">
+
+        <style>
+            form .search__bar{
+                justify-content: space-around;
+                width: 1000px;
+                height: 80px;
+                background-color: #fff;
+                display: flex;
+                padding-top: 14px;
+                border-radius: 50px;
+            }
+
+            .job__content{
+                display: flex;
+                margin: 40px 0;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .content__item{
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+            }
+
+            .content__item p{
+                margin:0 10px 0 0;
+            }
+
+            .content__item span{
+                color: green;
+                padding-top: 4px;
+            }
+            .messenger-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                padding: 0px;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .messenger-icon {
+                width: 70px; /* Kích thước của biểu tượng Messenger */
+                height: 70px; /* Kích thước của biểu tượng Messenger */
+            }
+        </style>
     </head>
 
     <body id="top">
@@ -75,52 +129,76 @@
 
 
             <!-- NAVBAR -->
-            <header class="site-navbar mt-3">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="site-logo col-6"><a href="#">JobC</a></div>
+            <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="left-content" style="display: flex; align-items: flex-end">
+                    <a href="BackHomePageUser"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                    <a href="SearchUser" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Việc làm</a>
+                    <a href="CreateCV.jsp" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Hồ sơ & CV</a>
+                    <a href="video_call_2.html" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Phỏng vấn online</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
+                    <a href="#" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
+                </div>
 
-                        <nav class="mx-auto site-navigation">
-                            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                <li><a href="BackHomePageUser" class="nav-link active">Home</a></li>                             
-                                <li><a href="CreateCV.jsp">Create CV</a></li>
-                                <li><a href="blog.html">View CV</a></li>
-                                <li><a href="https://nguyenanhtu37.github.io/PluginMessenger/plugin.html">Chat</a></li>
-                                <li><a href="video_call_2.html">Interview</a></li>
-                                <li><a href="blog.html">Job Applied</a></li>
-                               
-                            </ul>
-                        </nav>
-
-                        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                            <div class="ml-auto">
-                                <div class="dropdown d-none d-lg-inline-block">
-
-                                    <div class="mx-2" style="color: white; font-size: 20px;" type="button" id="signUp"
-                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa-regular fa-user"></i>
-                                        <span class="icon-text mx-2 text-capitalize">User</span>
+                <!--                <div class="right-cta-menu text-right d-flex align-items-center ml-auto" style="margin-left: auto;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="dropdown d-none d-lg-inline-block ml-2">
+                                            <a class="btn custom-btn dark-btn" href="LogOutServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                                                Đăng xuất
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="ViewProfileUser">Profile</a>
-                                        <a class="dropdown-item" href="ViewCVSentUser?id=${User.getUserId()}">View Cv's sent</a>                                         
-                                        <a class="dropdown-item" href="LogOutServlet">Log out</a>
+                                    <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3" style="margin-left: 1rem;">
+                                        <span class="icon-menu h3 m-0 p-0 mt-2"></span>
+                                    </a>
+                                </div>-->
+                <!--<div class="right-cta-menu text-right d-flex aligin-items-center col-6">-->
+                <!--<div class="right-cta-menu text-right d-flex aligin-items-center col-6">-->
+                <div class="ml-auto" style="margin-right: 50px">
+                    <div class="dropdown d-none d-lg-inline-block">
 
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
-                                    class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                        <div class="mx-2" style="color: black; font-size: 20px; " type="button" id="signUp"
+                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i>
+                            <span class="icon-text mx-2 text-capitalize">User</span>
                         </div>
+                        <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="ViewProfileUser">Profile</a>
+                            <a class="dropdown-item" href="ViewCVSentUser?id=${User.getUserId()}">View Cv's sent</a>                                         
+                            <a class="dropdown-item" href="LogOutServlet">Log out</a>
 
+                        </div>
                     </div>
                 </div>
-            </header>
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
+                        class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                <!--</div>-->
+            </nav>
+
+            <style>
+                .nav-link:hover {
+                    transform: scale(1.5); /* Zoom in 110% khi hover */
+                    color: #66BC46;
+                }
+
+                .btn.custom-btn:hover {
+                    background-color: #66BC46;
+                    color: white;
+                }
+
+                .btn.green-btn:hover {
+                    background-color: #4CAF50;
+                    border-color: #4CAF50;
+                }
+
+                .btn.dark-btn:hover {
+                    background-color: #1E272E;
+                    border-color: #1E272E;
+                }
+            </style>
 
             <!-- HOME -->
-            <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg'); "
+            <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg');"
                      id="home-section">
-
 
                 <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg'); "
                          id="home-section">
@@ -132,31 +210,51 @@
                             </div>
                             <div class="col-md-12 align-items-end">
                                 <div class="mb-5 text-center">
-                                    <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+                                    <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job Find jobs quickly 24 hours, latest jobs nationwide.</h1>
+                                    <p>Access 40,000+ job recruitment postings every day from thousands of reputable businesses in Vietnam</p>
                                 </div>
                             </div>
-                            <form action="SearchUser" method="POST" class="search-jobs-form">
-                                <div class="row mb-5">
-                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                        <input name ="search-input" type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                        <input name ="location-input" type="text" class="form-control form-control-lg" placeholder="Location">
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                        <select name="type-input" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true"
-                                                title="Select Job Type">
-                                            <option value="parttime">Part Time</option>
-                                            <option value="fulltime" >Full Time</option>
-                                            <option value="remote" >Remote</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span
-                                                class="icon-search icon mr-2"></span>Search Job</button>
+                            <form action="SearchEnter" method="POST" class="search-jobs-form">
+                                <div class="search__bar">
+                                    <div class="row mb-5">
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                            <input name ="search-input" type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                            <input name ="location-input" type="text" class="form-control form-control-lg" placeholder="Location">
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                            <select name="type-input" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true"
+                                                    title="Select Job Type">
+                                                <option value="parttime">Part Time</option>
+                                                <option value="fulltime" >Full Time</option>
+                                                <option value="remote" >Remote</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span
+                                                    class="icon-search icon mr-2"></span>Search Job</button>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="job__content">
+                                    <div class="content__item">
+                                        <p>Vị trí chờ bạn khám phá</p>
+                                        <span>46.640</span>
+                                    </div>
+
+                                    <div class="content__item">
+                                        <p>Việc làm mới nhất</p>
+                                        <span>4.400</span>
+                                    </div>
+
+                                    <div class="content__item">
+                                        <p>Cập nhật lúc:</p>
+                                        <span>21:21 11/07/2024</span>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-12 popular-keywords">
                                         <h3>Trending Keywords:</h3>
@@ -168,12 +266,12 @@
                                     </div>
                                 </div>
                             </form>
-                            <c:forEach items="${jobss}" var="job">
+                            <c:forEach items="${jobss}" var="job"> 
                                 <div class="col-md-12 align-items-start">
                                     <div class="mb-5 border rounded" style="background-color: whitesmoke; color: black;">
                                         <div class="p-3 border rounded">
                                             <form action="PostJobServlet" class="px-3 px-md-5 py-1 py-md-3 rounded" method="post">
-                                                <a href="ViewJobDetailUser?id=${job.jobId}" class=" possion text-black mb-5 pb-2 text-capitalize" style="font-size: 50px;font-weight: bold;">${job.title}</a>
+                                                <a href="ViewJobDetaiEnter?id=${job.jobId}" class=" possion text-black mb-5 pb-2 text-capitalize" style="font-size: 50px;font-weight: bold;">${job.title}</a>
                                                 <h3 class="text-black mb-2 border-bottom pb-2 text-capitalize">${job.enterName}</h3>
 
                                                 <div class="p-1">
@@ -187,14 +285,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row align-items-center mb-5">
-                                                        <div class="col-lg-2">
-                                                            <a class="form-check-label" href="SendCVServlet?id=${job.jobId}">
-                                                                Apply
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    
 
                                                 </div>
 
@@ -213,242 +303,8 @@
 
                 </section>
 
-                <section class="py-5 bg-image overlay-primary fixed overlay" id="next"
-                         style="background-image: url('images/hero_1.jpg');">
-                    <div class="container">
-                        <div class="row mb-5 justify-content-center">
-                            <div class="col-md-7 text-center">
-                                <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-                                <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis
-                                    recusandae sequi excepturi corrupti.</p>
-                            </div>
-                        </div>
-                        <div class="row pb-0 block__19738 section-counter">
-
-                            <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <strong class="number" data-number="1930">0</strong>
-                                </div>
-                                <span class="caption">Candidates</span>
-                            </div>
-
-                            <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <strong class="number" data-number="54">0</strong>
-                                </div>
-                                <span class="caption">Jobs Posted</span>
-                            </div>
-
-                            <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <strong class="number" data-number="120">0</strong>
-                                </div>
-                                <span class="caption">Jobs Filled</span>
-                            </div>
-
-                            <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <strong class="number" data-number="550">0</strong>
-                                </div>
-                                <span class="caption">Companies</span>
-                            </div>
 
 
-                        </div>
-                    </div>
-                </section>
-
-
-
-                <section class="site-section">
-                    <div class="container">
-
-                        <div class="row mb-5 justify-content-center">
-                            <div class="col-md-7 text-center">
-                                <h2 class="section-title mb-2">43,167 Job Listed</h2>
-                            </div>
-                        </div>
-
-                        <ul class="job-listings mb-5">
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Product Designer</h2>
-                                        <strong>Adidas</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> New York, New York
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-danger">Part Time</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Digital Marketing Director</h2>
-                                        <strong>Sprint</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Overland Park, Kansas
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_3.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Back-end Engineer (Python)</h2>
-                                        <strong>Amazon</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Overland Park, Kansas
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_4.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Senior Art Director</h2>
-                                        <strong>Microsoft</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Anywhere
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_5.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Product Designer</h2>
-                                        <strong>Puma</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> San Mateo, CA
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Product Designer</h2>
-                                        <strong>Adidas</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> New York, New York
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-danger">Part Time</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                                </div>
-
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Digital Marketing Director</h2>
-                                        <strong>Sprint</strong>
-                                    </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Overland Park, Kansas
-                                    </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-
-
-
-                        </ul>
-
-                        <div class="row pagination-wrap">
-                            <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-                                <span>Showing 1-7 Of 43,167 Jobs</span>
-                            </div>
-                            <div class="col-md-6 text-center text-md-right">
-                                <div class="custom-pagination ml-auto">
-                                    <a href="#" class="prev">Prev</a>
-                                    <div class="d-inline-block">
-                                        <a href="#" class="active">1</a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
-                                        <a href="#">4</a>
-                                    </div>
-                                    <a href="#" class="next">Next</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-md-8">
-                                <h2 class="text-white">Looking For A Job?</h2>
-                                <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci
-                                    impedit.</p>
-                            </div>
-                            <div class="col-md-3 ml-auto">
-                                <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
 
                 <section class="site-section py-4">
@@ -527,7 +383,7 @@
                                     </blockquote>
                                 </div>
                                 <div class="col-lg-6 align-self-end text-center text-lg-right">
-                                    <img src="images/person_transparent.png" alt="Image" class="img-fluid mb-0">
+                                    <img src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/img/Tek-Expert-bannerT1.jpg" alt="Image" class="img-fluid mb-0">
                                 </div>
                             </div>
                         </div>
@@ -618,7 +474,10 @@
                         </div>
                     </div>
                 </footer>
-
+                <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
+                    <!--<button>Bạn cần hỗ trợ?</button>-->
+                    <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
+                </a>
         </div>
 
         <!-- SCRIPTS -->

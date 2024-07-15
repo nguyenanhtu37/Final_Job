@@ -9,7 +9,7 @@
 <html lang="en">
 
     <head>
-        <title>JobBoard &mdash; Website Template by Colorlib</title>
+        <title>JobLink &mdash; Reset password</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,201 +22,198 @@
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/quill.snow.css">
-
+        <link rel="shortcut icon" href="images/logo.png">
 
         <!-- MAIN CSS -->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/forgotpassword.css">
     </head>
 
     <body id="top">
+        
+        <!-- NAVBAR -->
+        <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <div class="left-content" style="display: flex; align-items: flex-end">
+                <a href="index.jsp"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                <a href="index.jsp" class="nav-link" style="margin-left: 100px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;" onclick="scrollToSearchForm()">Việc làm</a>
+                <div class="dropdown">
+                    <a href="LoginServlet" class="nav-link" onclick="toggleDropdown()">Hồ sơ & CV</a>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="LoginServlet">Tạo CV</a>
+                    </div>
+                </div>
 
-        <div id="overlayer"></div>
-        <div class="loader">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
+                <a href="index.jsp" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Công cụ</a>
+                <a href="index.jsp" class="nav-link" style="margin-left: 50px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 0px 10px; transition: color 0.3s, background-color 0.3s, transform 0.3s;">Cẩm nang nghề nghiệp</a>
             </div>
-        </div>
-
-
-        <div class="site-wrap">
-
-            <div class="site-mobile-menu site-navbar-target">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
+            <div class="right-cta-menu text-right d-flex align-items-center ml-auto" style="margin-left: auto;">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown d-none d-lg-inline-block">
+                        <a class="" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: white; color: #66BC46; border-color: #66BC46; transition: background-color 0.3s, color 0.3s;">
+                            Đăng nhập
+                        </a>
+                    </div>
+                    <div class="dropdown d-none d-lg-inline-block ml-2">
+                        <a class="" href="SignUpServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #66BC46; border-color: #66BC46; color: white; transition: background-color 0.3s, color 0.3s;">
+                            Đăng ký
+                        </a>
+                    </div>
+                    <div class="dropdown d-none d-lg-inline-block ml-2">
+                        <a class="" href="DangKyTuVan.jsp" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                            Đăng tuyển & tìm hồ sơ
+                        </a>
                     </div>
                 </div>
-                <div class="site-mobile-menu-body"></div>
-            </div> <!-- .site-mobile-menu -->
-
-
-            <!-- NAVBAR -->
-            <header class="site-navbar mt-3">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="site-logo col-6"><a href="index.html">JobC</a></div>
-
-                        <nav class="mx-auto site-navigation">
-                            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                <li><a href="index.html" class="nav-link">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li class="has-children">
-                                    <a href="job-listings.html">Job Listings</a>
-                                    <ul class="dropdown">
-                                        <li><a href="job-single.html">Job Single</a></li>
-                                        <li><a href="post-job.html">Post a Job</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children">
-                                    <a href="services.html">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="service-single.html">Service Single</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                        <li><a href="portfolio.html">Portfolio</a></li>
-                                        <li><a href="portfolio-single.html">Portfolio Single</a></li>
-                                        <li><a href="testimonials.html">Testimonials</a></li>
-                                        <li><a href="faq.html">Frequently Ask Questions</a></li>
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li class="d-lg-none"><a href="SignUpServlet">Sign Up</a></li>
-                                <li class="d-lg-none"><a href="LoginServlet">Log In</a></li>
-                            </ul>
-                        </nav>
-
-                        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                            <div class="ml-auto">
-                                <a href="SignUpServlet" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                        class="mr-2 icon-lock_outline"></span>Sign Up</a>
-                                <a href="LoginServlet" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                        class="mr-2 icon-lock_outline"></span>Log In</a>
-                            </div>
-                            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
-                                    class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-                        </div>
-
-                    </div>
-                </div>
-            </header>
-
-            <!-- HOME -->
-            <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');"
-                     id="home-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <h1 class="text-white font-weight-bold">Login/Forgot Password</h1>
-                            <div class="custom-breadcrumbs">
-                                <a href="#">Home</a> <span class="mx-2 slash">/</span>
-                                <span class="text-white"><strong>Forgot Password</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="site-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="offset-3 col-lg-6 mb-5">
-                            <h2 class="mb-4">Reset Your Password</h2>
-                            <form action="ForgotPasswordServlet" method="POST" class="p-4 border rounded">
-                                <div class="message-response h5 " style="color: red">
-                                    ${inputError}
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="label" for="">Email</label>
-                                    <input type="email" class="form-control" id="username_input" name="email-input" placeholder="Username">
-                                    <span class="message-form"></span>
-                                </div>                                
-                                <div class="form-group mb-4">
-                                    <label class="label" for="role">Role</label>
-                                    <select class="form-control" name="role-input" id="role_input">
-                                        <option value="User" selected>User</option>
-                                        <option value="Enterprise">Enterprise</option>
-                                    </select>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col-md-12">
-                                        <!-- <a href="./notice.html" id="sign-up-btn" class="btn px-4 btn-primary text-white">Sign Up</a> -->
-                                        <input type="submit" value="Submit" class="btn px-4 btn-primary text-white">
-                                    </div>
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <footer class="site-footer">
-
-                <a href="#top" class="smoothscroll scroll-top">
-                    <span class="icon-keyboard_arrow_up"></span>
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3" style="margin-left: 1rem;">
+                    <span class="icon-menu h3 m-0 p-0 mt-2"></span>
                 </a>
+            </div>
+        </nav>
 
-                <div class="container">
-                    <div class="row mb-5">
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Search Trending</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">Graphic Design</a></li>
-                                <li><a href="#">Web Developers</a></li>
-                                <li><a href="#">Python</a></li>
-                                <li><a href="#">HTML5</a></li>
-                                <li><a href="#">CSS3</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Company</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Resources</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Support</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3 mb-4 mb-md-0">
-                            <h3>Contact Us</h3>
-                            <div class="footer-social">
-                                <a href="#"><span class="icon-facebook"></span></a>
-                                <a href="#"><span class="icon-twitter"></span></a>
-                                <a href="#"><span class="icon-instagram"></span></a>
-                                <a href="#"><span class="icon-linkedin"></span></a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row text-center">
-                        <div class="col-12">
-                            <p class="copyright"><small>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-                                    with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                                                                                         target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </small></p>
-                        </div>
+        <style>
+            .nav-link:hover {
+                transform: scale(1.5); /* Zoom in 110% khi hover */
+                color: #66BC46;
+            }
+
+            .btn.custom-btn:hover {
+                background-color: #66BC46;
+                color: white;
+            }
+
+            .btn.green-btn:hover {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+            }
+
+            .btn.dark-btn:hover {
+                background-color: #1E272E;
+                border-color: #1E272E;
+            }
+
+            .nav-link:hover {
+                transform: scale(1.5); /* Zoom in 110% khi hover */
+                color: #66BC46;
+            }
+
+            .btn.custom-btn:hover {
+                background-color: #66BC46;
+                color: white;
+            }
+
+            .btn.green-btn:hover {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+            }
+
+            .btn.dark-btn:hover {
+                background-color: #1E272E;
+                border-color: #1E272E;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                min-width: 200px; /* Điều chỉnh độ rộng tối thiểu */
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                border-radius: 4px; /* Bo góc dropdown */
+                overflow: hidden; /* Ẩn phần nội dung vượt quá */
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #66BC46; /* Màu nền khi hover */
+                color: white; /* Màu chữ khi hover */
+            }
+
+            .show {
+                display: block;
+            }
+
+            .nav-link {
+                margin-left: 50px;
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 0px 10px;
+                transition: color 0.3s, background-color 0.3s, transform 0.3s;
+                cursor: pointer;
+            }
+
+        </style>
+
+            <div class="wrapper">
+        <div class="container">
+
+            <div class="title-section">
+                <h2 class="title">Forgot Password</h2>
+                <p class="para">Enter your email to receive OTP.</p>
+            </div>
+
+            <form action="ForgotPasswordServlet" method="POST" class="form">
+                <div class="message-response h5 " style="color: red">
+                    ${inputError}
+                </div>
+                <div class="input-group">
+                    <label for="" class="label-title">Email</label>
+                    <input type="email" class="form-control" id="username_input" name="email-input"
+                        placeholder="Enter your email address" required>
+                    <span class="icon">&#9993;</span>
+                </div>
+                <div style="width: 100%; display: flex; justify-content: center;margin-bottom: 20px;">
+                    <div class="select-role">
+                        <span class="label" for="role">Role: </span>
+                        <select class="form-control" name="role-input" id="role_input">
+                            <option value="User" selected>User</option>
+                            <option value="Enterprise">Enterprise</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-            </footer>
+                <div class="input-group">
+                    <button class="submit-btn" type="submit" value="submit">Send OTP</button>
+                </div>
+            </form>
 
+        </div>
+    </div>
+       
+                <a href="https://m.me/295506026989207" target="_blank" class="messenger-button">
+                <!--<button>Bạn cần hỗ trợ?</button>-->
+                <img src="images/messenger.png" alt="Messenger" class="messenger-icon">
+            </a>
+            <style>
+                .messenger-button {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 1000;
+                    padding: 0px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
+
+                .messenger-icon {
+                    width: 70px; /* Kích thước của biểu tượng Messenger */
+                    height: 70px; /* Kích thước của biểu tượng Messenger */
+                }
+            </style>
+                
         </div>
 
         <!-- SCRIPTS -->

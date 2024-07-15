@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>JobC &mdash; Manage User Accounts</title>
+        <title>JobLink &mdash; Quản lý tài khoản bị khóa</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -48,32 +48,68 @@
 
 
                 <!-- NAVBAR -->
-                <header class="site-navbar mt-3">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <div class="site-logo col-6"><a href="mainAdmin.jsp">JobC</a></div>
-
-                            <nav class="mx-auto site-navigation">
-                                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                    <li><a href="mainAdmin.jsp" class="nav-link">Home</a></li>
-                                    <li><a href="getinfouser" class="nav-link">Manage Account</a></li>
-                                </ul>
-                            </nav>
-
-                        </div>
+                <nav class="navbar" style="display: flex; align-items: center; height: 70px; background-color: white; padding: 0 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                    <div class="left-content" style="display: flex; align-items: flex-end">
+                        <a href="mainAdmin.jsp"><img src="images/JobLink.png" alt="JobLink" class="navbar-logo" style="height: 50px; width: auto;"></a>
+                        <a href="displayRegistrations" class="nav-link">Danh sách đăng ký nhận tư vấn</a>
+                        <a href="getinfouser" class="nav-link">Quản lý tài khoản</a>
+                        <a href="#" class="nav-link">Danh sách tài khoản bị khóa</a>
+                        <a href="Statistics" class="nav-link">Thống kê</a>
                     </div>
-                </header>
+
+                    <div class="dropdown d-none d-lg-inline-block ml-2">
+                        <a class="btn custom-btn -btn" href="LoginServlet" style="border-width: 1px; border-style: solid; padding: 8px 16px; font-size: 14px; font-weight: bold; background-color: #2B332C; border-color: #2B332C; color: white; transition: background-color 0.3s, color 0.3s;">
+                            Đăng xuất
+                        </a>
+                    </div>
+                </nav>
+                <style>
+                    .nav-link:hover {
+                        transform: scale(1.5); /* Zoom in 110% khi hover */
+                        color: #66BC46;
+                    }
+
+                    .btn.custom-btn:hover {
+                        background-color: #66BC46;
+                        color: white;
+                    }
+
+                    .btn.green-btn:hover {
+                        background-color: #4CAF50;
+                        border-color: #4CAF50;
+                    }
+
+                    .btn.dark-btn:hover {
+                        background-color: #1E272E;
+                        border-color: #1E272E;
+                    }
+
+                    .navbar .nav-link {
+                        margin-left: 50px;
+                        text-decoration: none;
+                        color: #333;
+                        font-weight: bold;
+                        font-size: 16px;
+                        padding: 0 10px;
+                        transition: color 0.3s, background-color 0.3s, transform 0.3s;
+                    }
+
+                    .navbar .nav-link:hover {
+                        transform: scale(1.1); /* Zoom in 110% khi hover */
+                        color: #66BC46;
+                    }
+                </style> 
 
                 <!-- HOME -->
                 <section class="section-hero home-section overlay inner-page bg-image"
-                         style="background-image: url('images/hero_1.jpg');" id="home-section">
+                         style="background-image: url('images/manageaccount.jpg');" id="home-section">
 
                     <div class="container">
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-12">
                                 <div class="mb-5 text-center">
-                                    <h1 class="text-white font-weight-bold">Job Search Platform JobC - Job Connection</h1>
-                                    <p>The easiest way to connect between Employers and Job Seekers!</p>
+                                    <h1 style="padding-right: 400px" class="text-white font-weight-bold">Quản lý tài khoản bị khóa</h1>
+                                    <!--<p>The easiest way to connect between Employers and Job Seekers!</p>-->
                                 </div>
                             </div>
                         </div>
@@ -89,17 +125,9 @@
                 <div id="next">
                     <%-- Kiểm tra xem danh sách người dùng có tồn tại không --%>
                     <c:if test="${res != null && not empty res}">
-                        <section class="site-section col-md-12" >
+                        <section class="site-section col-md-12" style="padding-top: 0px; padding-bottom: 800px" >
 
                             <div class="container col-md-12">
-                                <!--<button class="btn-primary" style="float: right;">Go to locked user accounts</button>-->
-                                <div class="row mb-5 justify-content-center">
-                                    <div class="col-md-7 text-center">
-                                        <h2 class="section-title mb-2">Manage User Accounts</h2>
-
-                                    </div>
-
-                                </div>
                                 <a href="LockUserServlet">
                                     <!--<button  class="btn-primary" style="float: right; border-radius: 5px"></button>-->
                                 </a>
@@ -156,7 +184,7 @@
                     <!--Nếu danh sách rỗng hoặc null, hiển thị thông báo--> 
                     <c:if test="${empty res}">
                         <br><br><br><br><br><br><br><br><br>
-                        <h1 class="d-flex justify-content-center">There are no locked user here!</h1>>
+                        <h1 style="padding-bottom: 180px; padding-top: 180px" class="d-flex justify-content-center">Danh sách rỗng...</h1>>
                         <br><br><br><br><br><br><br><br><br><br>
                     </c:if>
                 </div>

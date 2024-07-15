@@ -1,4 +1,3 @@
-
 var stringeeClient;
 var fromNumber = 'FROM_YOUR_NUMBER';
 var call;
@@ -50,6 +49,33 @@ function testMakeCall(videocall) {
     });
 }
 
+function sendScreenStream(stream) {
+    if (call) {
+        call.sendStream(stream);
+        console.log('Sent screen stream to the other party.');
+    } else {
+        console.error('No active call to send screen stream.');
+    }
+}
+
+async function startScreenShare1() {
+    try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        const screenVideo = document.getElementById('screenVideo');
+        screenVideo.srcObject = stream;
+        screenVideo.style.display = 'block';
+        screenVideo.play(); // Bắt đầu phát video ngay khi có dữ liệu
+
+        // Gửi stream màn hình trong cuộc gọi
+        sendScreenStream(stream);
+
+        // In log ra console khi screen đã bắt đầu được gửi sang phía bên kia
+        console.log('Screen sharing has started and sent to the other party.');
+    } catch (error) {
+        console.error('Lỗi khi truy cập màn hình:', error);
+    }
+}
+
 function settingClientEvents(client) {
     client.on('connect', function () {
         console.log('++++++++++++++ connected to StringeeServer');
@@ -95,49 +121,32 @@ function settingClientEvents(client) {
 }
 
 function settingCallEvent(call1) {
-    callStarted();
-
     call1.on('addremotestream', function (stream) {
-        console.log('addremotestream');
-        // reset srcObject to work around minor bugs in Chrome and Edge.
-        remoteVideo.srcObject = null;
-        remoteVideo.srcObject = stream;
-    });
-
-    call1.on('addlocalstream', function (stream) {
-        console.log('addlocalstream');
-        // reset srcObject to work around minor bugs in Chrome and Edge.
-        localVideo.srcObject = null;
-        localVideo.srcObject = stream;
+        console.log('Add remote stream');
+        var screenVideo = document.getElementById('screenVideo');
+        screenVideo.srcObject = stream;
+        screenVideo.style.display = 'block';
+        screenVideo.play(); // Phát video khi có dữ liệu
     });
 
     call1.on('error', function (info) {
-        console.log('on error: ' + JSON.stringify(info));
+        console.log('Call error:', info);
     });
 
     call1.on('signalingstate', function (state) {
-        console.log('signalingstate ', state);
-        var reason = state.reason;
-        $('#callStatus').html(reason);
-
-        if (state.code === 6) {//call Ended
-            $('#incoming-call-div').hide();
-            callEnded();
-        } else if (state.code === 5) {//busy
-            callEnded();
-        }
+        console.log('Signaling state:', state);
     });
 
     call1.on('mediastate', function (state) {
-        console.log('mediastate ', state);
+        console.log('Media state:', state);
     });
 
     call1.on('info', function (info) {
-        console.log('on info:' + JSON.stringify(info));
+        console.log('Call info:', info);
     });
 
     call1.on('otherdevice', function (data) {
-        console.log('on otherdevice:' + JSON.stringify(data));
+        console.log('Other device:', data);
         if ((data.type === 'CALL_STATE' && data.code >= 200) || data.type === 'CALL_END') {
             $('#incoming-call-div').hide();
             callEnded();
@@ -211,3 +220,5 @@ function callEnded() {
         $('#callStatus').html('Call ended');
     }, 1500);
 }
+
+document.getElementById('startScreenShare').addEventListener('click', startScreenShare);

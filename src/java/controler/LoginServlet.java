@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("role", role);
 
         if (role.equals("User")) {
-            if (!uName.equals("manager") && !pass.equals("123456")) {
+            if (!uName.equals("manager@gmail.com") && !pass.equals("123456")) {
                 try {
                     User u = new User().login(uName, pass);
                     if (u != null) {
@@ -116,8 +116,8 @@ public class LoginServlet extends HttpServlet {
                 } catch (NoSuchAlgorithmException ex) {
                     Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (uName.equals("manager") && pass.equals("123456")) {
-                request.getSession().setAttribute("manager", "123456");
+            } else if (uName.equals("manager@gmail.com") && pass.equals("123456")) {
+                request.getSession().setAttribute("manager@gmail.com", "123456");
                 request.getRequestDispatcher("mainAdmin.jsp").forward(request, response);
             }
 
